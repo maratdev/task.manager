@@ -29,7 +29,7 @@ include_once $_SERVER['DOCUMENT_ROOT']. '/include/login_form.php';
             <h1>Возможности проекта — <? h1($menu)?></h1>
             <p>Вести свои личные списки, например покупки в магазине, цели, задачи и многое другое. Делится списками с друзьями и просматривать списки друзей.</p>
 
-            <h2><? if($true_form_set){ require$_SERVER['DOCUMENT_ROOT']. '/include/success.php';} if($view){require 'include/error.php';}; ?>  </h2>
+            <h2><? if($true_form_set){ require$_SERVER['DOCUMENT_ROOT']. '/include/success.php';} if($view){require $_SERVER['DOCUMENT_ROOT']. '/include/error.php';}; ?>  </h2>
 
 
             <?if (!empty($get_login == 'yes')){ ?>

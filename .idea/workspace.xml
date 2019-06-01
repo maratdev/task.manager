@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0937aed0-78c9-4eea-b652-1cd7e3fe0329" name="Default" comment="" />
+    <list default="true" id="0937aed0-78c9-4eea-b652-1cd7e3fe0329" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/route/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/route/index.php" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,8 +16,8 @@
       <file leaf-file-name="index.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/route/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="504">
-              <caret line="34" column="50" lean-forward="true" selection-start-line="34" selection-start-column="50" selection-end-line="34" selection-end-column="50" />
+            <state relative-caret-position="252">
+              <caret line="14" column="17" lean-forward="true" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -36,6 +38,9 @@
       <find>menu_he</find>
       <find>menu_header</find>
     </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -61,12 +66,12 @@
         <option value="$PROJECT_DIR$/include/function.php" />
         <option value="$PROJECT_DIR$/include/header.php" />
         <option value="$PROJECT_DIR$/index.php" />
-        <option value="$PROJECT_DIR$/route/index.php" />
         <option value="$PROJECT_DIR$/route/about/index.php" />
         <option value="$PROJECT_DIR$/route/contact/index.php" />
         <option value="$PROJECT_DIR$/route/gallery/index.php" />
         <option value="$PROJECT_DIR$/route/map/index.php" />
         <option value="$PROJECT_DIR$/route/project/index.php" />
+        <option value="$PROJECT_DIR$/route/index.php" />
       </list>
     </option>
   </component>
@@ -79,12 +84,13 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-74" />
     <option name="y" value="-22" />
     <option name="width" value="1936" />
     <option name="height" value="1029" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -170,15 +176,15 @@
       <workItem from="1557769258782" duration="7368000" />
       <workItem from="1557943437553" duration="5694000" />
       <workItem from="1558192561522" duration="5267000" />
-      <workItem from="1559390678588" duration="1741000" />
+      <workItem from="1559390678588" duration="1779000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="121424000" />
+    <option name="totallyTimeSpent" value="121462000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1066" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4989224" visible="true" weight="0.1433902" />
@@ -187,7 +193,7 @@
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="Structure" order="1" sideWeight="0.5010776" side_tool="true" weight="0.13646056" />
       <window_info anchor="bottom" id="Terminal" order="7" />
@@ -493,8 +499,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/route/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="34" column="50" lean-forward="true" selection-start-line="34" selection-start-column="50" selection-end-line="34" selection-end-column="50" />
+        <state relative-caret-position="252">
+          <caret line="14" column="17" lean-forward="true" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
         </state>
       </provider>
     </entry>
