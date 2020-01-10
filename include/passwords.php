@@ -1,2 +1,2 @@
 <?php
-return [1=>'admin','demos','jax123','zed123'];
+return [1=>'admin','demo','jax123','zed123'];

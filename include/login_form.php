@@ -1,5 +1,6 @@
 <?php
 if ($_POST) {
+
     $logins = include 'users.php';
     $passwords = include 'passwords.php';
 
@@ -8,12 +9,12 @@ if ($_POST) {
 
 
     //Проверка правильность формы
-
-    if (($k = array_search($login_form, $logins)) !== false) {
+    $k = array_search($login_form, $logins);
+    if ($k !== false && $passwords[$k] == $pass_form) {
         $passwords[$k] != $pass_form ?: $true_form_set = true;
-    };
+    }
 
-    if (!empty($k = array_search($login_form, $logins)) != false) {
+    if (!empty($k) != false) {
         $passwords[$k] == $pass_form ?: $view = true;
     }else{
         $view = 'Пустая форма!';
@@ -21,4 +22,4 @@ if ($_POST) {
 
 }
 
-$get_login = $_GET['login'];
+$get_login = isset($_GET['login']);
