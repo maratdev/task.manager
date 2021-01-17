@@ -4,7 +4,5 @@
         <ul>
             <?php showMenu($menu, $cssClass); ?>
         </ul>
-
-
     </div>
 </div>

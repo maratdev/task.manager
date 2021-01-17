@@ -39,10 +39,14 @@ a:hover {
 	margin: 0px 0px 10px 0px;
 	border: none;
 }
-h2{
-	color: red;
-}
 
+.error{
+	color: red;
+
+}
+.success{
+	color: green;
+}
 
 
 .flex {
@@ -58,6 +62,28 @@ h2{
 	color: #000;
 	margin: 5px;
 	padding: 10px;
+}
+.side-bar {
+	float: left;
+}
+.online1{
+	width: 300px;
+	height: 250px;
+	padding-top: 10px;
+	position: relative;
+}
+ul.category{
+	list-style: none;
+}
+ul.category ul{
+	list-style: none;
+	padding-left: 12px !important;
+}
+.category_menu{
+	width: 300px;
+	height: auto;
+	position: relative;
+	margin-top: 0;
 }
 
 .flex-itm p {
@@ -167,6 +193,7 @@ h2{
 	padding: 0px;
 	width: 70%;
 	vertical-align: top;
+	position: relative;
 }
 .right-collum {
 	background: #efefef;
@@ -197,6 +224,12 @@ h2{
 	width: 50%;
 	border-left: solid 1px #aeaeae;
 	vertical-align: top;
+}
+
+
+/* Style the tab content */
+.tabcontent {
+	display: none;
 }
 
 
@@ -433,7 +466,7 @@ h2{
 }
 
 .footer {
-	color: #333;
+	color: #fff;
 	margin: 20px 0px 0px 0px;
 	padding: 0px;
 }
@@ -451,16 +484,12 @@ h2{
 
 .footer a {
 	text-decoration: none;
-	color: #333;
+	color: #fff;
 	font-size: 12px;
 }
 .footer a:hover {
 	color: #CCC;
 }
-
-
-
-
 
 
 .project-container {margin: 0px; padding: 10px;background: url(i/add-bg.gif) bottom repeat-x #f6f6f6;}
@@ -577,6 +606,15 @@ h2{
 	background: #efefef;
 	font-weight: bold;
 }
+.project-folders-v-active a{
+	padding: 6px 10px;
+	text-decoration: none;
+	display: block;
+	color: #333;
+	background: #efefef;
+	font-weight: bold;
+}
+
 	
 .money-table-header {
 	background: #efefef;
@@ -752,8 +790,11 @@ h2{
 	padding: 0px 0px 10px 0px;
 }
 .iat input {
-	width: 99% !important;
+	width: 99%;
 	}
+.iat input[type="checkbox"]{
+	width: auto !important;
+}
 
 .print-container {
 	width: 800px;
