@@ -3,8 +3,9 @@ include_once 'main_menu.php';
 require_once 'bd.php';
     $path = strtok($_SERVER["REQUEST_URI"], '?');
 
-    //Создание кук если пройдена проверка login и пароль
 
+
+    //Создание кук если пройдена проверка login и пароль
     if (isset($true_form_set)){
         $_SESSION['login'] = $login_form;
         $_SESSION['password'] = $pass_form;
@@ -64,7 +65,6 @@ require_once 'bd.php';
     }
 
 
-
     // проверка, если пользователь нажал выход, сессия удаляется
     //хук для удаления с Chrome
     $str = $_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"];
@@ -80,7 +80,7 @@ require_once 'bd.php';
         exit();
     }
 
-    // ЗАПОЛНИТЬ КОМЕНТАРИЯМИ
+// Перевод в ассоциативный массив
     function resultToArray($result_set){
         $results = [];
         while (($row = mysqli_fetch_assoc($result_set)) != false){
@@ -89,11 +89,15 @@ require_once 'bd.php';
         return $results;
     }
 
+//  Поиск пользователю по id
     function getUserOnId($id){
         global $link;
         $result_set = mysqli_query($link,"SELECT * FROM users WHERE id='$id'");
         return mysqli_fetch_assoc($result_set);
     }
+
+
+//  Поиск ID пользователя по login
     function getIdOnLogin($login){
         global $link;
         $result_set = mysqli_query($link,"SELECT id FROM users WHERE login='$login'");
@@ -101,52 +105,74 @@ require_once 'bd.php';
         return $row['id'];
     }
 
-    function addMessage($from, $to, $message){
+//  Добавление сообщения в БД
+    function addMessage($from, $to, $header, $message, $category, $read_msg){
         global $link;
-        mysqli_query($link,"INSERT INTO messages (froms, tos, message, `date`, `section`) 
-                                        VALUES ('$from', '$to', '$message', UNIX_TIMESTAMP(), '' )");
+        mysqli_query($link,"INSERT INTO messages (froms, tos, header, message, `date`, `section`, read_msg) 
+                                        VALUES ('$from', '$to', '$header', '$message', UNIX_TIMESTAMP(), '$category', '$read_msg')");
     }
 
-function getAllMessages($to){
+
+//  Вывод всех сообщений
+    function getAllMessages($to){
+        global $link;
+        $result_set = mysqli_query($link,"SELECT * FROM messages WHERE tos = '$to' ORDER BY `date` DESC ");
+        return resultToArray($result_set);
+    }
+
+
+//  Вывод категории сообщения
+function getSectionOnId($id){
     global $link;
-    $result_set = mysqli_query($link,"SELECT * FROM messages WHERE tos = '$to' ORDER BY `date` DESC ");
-    return resultToArray($result_set);
+    $result_set = mysqli_query($link,"SELECT * FROM categories WHERE id='$id'");
+    return mysqli_fetch_assoc($result_set);
 }
 
 
-    // Вывод многоуровнего меню
-    function get_cat(){
-        global $link;
-        $sql = "SELECT id, title, parent_id FROM categories";
-        $result = mysqli_query($link, $sql);
-        $arr_cat = [];
+//  Поиск пользователю по login
+function getIdOnUsers($login){
+    global $link;
+    $result_set = mysqli_query($link,"SELECT * FROM users WHERE id='$login'");
+    return mysqli_fetch_assoc($result_set);
+}
 
-        if(mysqli_num_rows($result) != 0){
-            for ($i = 0; $i < mysqli_num_rows($result); $i++){
-                $row = mysqli_fetch_assoc($result);
-                if (empty($arr_cat[$row['parent_id']])){
-                    $arr_cat[$row['parent_id']] = [];
-                }
-                $arr_cat[$row['parent_id']][]= $row;
+// Выборка из БД письма для тега option
+function get_cat(){
+    global $link;
+    $sql = "SELECT * FROM categories";
+    $result = mysqli_query($link, $sql);
+    $arr_cat = [];
+
+    if(mysqli_num_rows($result) != 0){
+        for ($i = 0; $i < mysqli_num_rows($result); $i++){
+            $row = mysqli_fetch_assoc($result);
+            if (empty($arr_cat[$row['parent_id']])){
+                $arr_cat[$row['parent_id']] = [];
             }
+            $arr_cat[$row['parent_id']][]= $row;
         }
-        return $arr_cat;
+    }
+    return $arr_cat;
+}
+
+
+// Вывод загловка письма в теге option 2
+function view_cat($arr, $parent_id = 0){
+    if (empty($arr[$parent_id])){
+        return;
     }
 
-    // Вывод на экран меню
-    function view_cat($arr, $parent_id = 0){
-           if (empty($arr[$parent_id])){
-               return;
-           }
-           echo "<ul>";
-           for ($i = 0; $i < count($arr[$parent_id]); $i++){
-                echo "<li><a href='?category_id=".$arr[$parent_id][$i]['id']."&parent_id=".$parent_id."'>".$arr[$parent_id][$i]['title']."</a>";
-                view_cat($arr, $arr[$parent_id][$i]['id']);
-                echo "</li>";
-           }
-           echo "</ul>";
+    for ($i = 0; $i < count($arr[$parent_id]); $i++){
+        if ($parent_id == 0){
+            $disabled = 'disabled';
+        }else{
+            $arrows = '⋅';
+        }
+        echo "
+            <option $disabled value=".$arr[$parent_id][$i]['id']." style='color: ".$arr[$parent_id][$i]['color']."'>$arrows ".$arr[$parent_id][$i]['title']."</option>";
+        view_cat($arr, $arr[$parent_id][$i]['id']);
     }
-
+}
 
 // Распечатка массива
 //Вывод многоуровневого меню методом Tommy Lacroix tree
@@ -163,7 +189,6 @@ function getAllMessages($to){
     }
 
 // Дерево в строуку HTML
-
     function categoriesToString($data){
         foreach ($data as $item){
             $string .= categoriesToTemplate($item);
@@ -178,6 +203,7 @@ function getAllMessages($to){
             include 'category_template.php';
             return ob_get_clean();
     }
+
     function get_categories (){
         global $link;
         $query = "SELECT * FROM categories";
@@ -218,32 +244,26 @@ function getAllMessages($to){
     }
 
     // Получение писем
-
     function get_messages($ids, $to){
         global $link;
-        if ($ids){
-            $query = "SELECT *
-                        FROM messages
+        global $mess;
+        $my_messages = [];
+        if (is_int($ids) and !empty($to)){
+            $query = "SELECT * FROM messages
                         LEFT JOIN categories 
                         ON categories.id = $ids
                         WHERE messages.tos = $to
                         ORDER BY `date` DESC ";
-        }else{
-            $query = "SELECT * FROM messages ORDER BY `message`";
-           // echo 'нет сообщений!';
-        }
-        $res = mysqli_query($link, $query);
-        $my_messages = [];
-            while ($row = mysqli_fetch_assoc($res)){
+
+            $res = mysqli_query($link, $query) or trigger_error(mysqli_error($link)." in ". $query);
+            while ($row = mysqli_fetch_array($res)){
                 $my_messages[] = $row;
             }
-        return $my_messages;
+        }else{
+           $mess = 'Нет сообщений!';
+        }
+            return $my_messages;
+
     }
-
-    // $result_set = mysqli_query($link,"SELECT * FROM messages WHERE tos = '$to' ORDER BY `date` DESC ");
-
-
-
-
 
 

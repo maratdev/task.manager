@@ -26,8 +26,6 @@ if ($_GET['category']){
     foreach ($tos as $item){
        $to = $item['tos'];
     }
-
-
     $my_messages = get_messages($ids ,$to);
 }
 

@@ -2,18 +2,15 @@
 session_start();
 require_once 'bd.php';
 
-
 //Регистрация
 if (isset($_POST['reg'])){
-
     $full_name = strip_tags(trim($_POST['full_name']));
-    $login =strip_tags(trim($_POST['login']));
+    $login = strip_tags(trim($_POST['login']));
     $password = strip_tags(trim($_POST['password']));
     $email = strip_tags(trim($_POST['email']));
     $phone = strip_tags(trim($_POST['phone']));
     $flag_email = strip_tags(trim($_POST['flag_email']));
     $password_confirm = strip_tags(trim($_POST['password_confirm']));
-
 
     if (!empty($password) and !empty($password_confirm)){
         if ($password === $password_confirm){
@@ -77,9 +74,7 @@ if (!empty($_POST['auth'])) {
             "login" => $user['login'],
             "status" => $user['status'],
             "flag_email" => $user['flag_email']
-
        ];
-
        $true_form_set = true;
    }else{
        $_SESSION['message'] = [

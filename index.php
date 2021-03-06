@@ -28,7 +28,7 @@ include_once 'include/function.php';
 
             <?php  include_once $_SERVER['DOCUMENT_ROOT']. '/templates/auth.php'; ?>
 
-            <? if ($_SESSION['message']):?>
+            <?php if ($_SESSION['message']):?>
                 <h2 class="<?=$_SESSION['message']['status']?>"> <?=$_SESSION['message']['text']?>  </h2>
             <?endif; unset($_SESSION['message']); ?>
 
@@ -39,7 +39,5 @@ include_once 'include/function.php';
     </tr>
 </table>
             <?php include_once 'templates/footer.php' ?>
-
-
 </body>
 </html>
