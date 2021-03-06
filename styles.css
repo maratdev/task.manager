@@ -40,6 +40,74 @@ a:hover {
 	border: none;
 }
 
+.error{
+	color: red;
+
+}
+.success{
+	color: green;
+}
+
+
+.flex {
+	display: flex;
+	padding: 5px;
+	flex-wrap: wrap;
+	justify-content: left;
+}
+
+.flex-itm, .flex-itm p {
+	background: #cdcdcd;
+	font-size: 12px;
+	color: #000;
+	margin: 5px;
+	padding: 10px;
+}
+.side-bar {
+
+}
+.online1{
+	width: 300px;
+	height: 250px;
+	padding-top: 10px;
+	position: relative;
+}
+ul.category{
+	list-style: none;
+}
+ul.category ul{
+	list-style: none;
+	padding-left: 12px !important;
+}
+.category_menu{
+	width: 300px;
+	height: auto;
+	position: relative;
+	margin-top: 0;
+}
+
+.flex-itm p {
+	margin: 2px;
+	padding: 0;
+}
+
+.flex-itm img {
+	border-radius: 5px;
+}
+.my_form{
+	position: absolute; bottom: 0; z-index: 999
+}
+.infoMsgFile{
+	color: #fff;
+	margin-bottom: 10px;
+}
+.infoMsgFile a{
+	color: yellow;
+}
+
+
+
+
 .header .menu_header li{
 	float: left;
 	text-decoration:none;
@@ -125,6 +193,7 @@ a:hover {
 	padding: 0px;
 	width: 70%;
 	vertical-align: top;
+	position: relative;
 }
 .right-collum {
 	background: #efefef;
@@ -155,6 +224,12 @@ a:hover {
 	width: 50%;
 	border-left: solid 1px #aeaeae;
 	vertical-align: top;
+}
+
+
+/* Style the tab content */
+.tabcontent {
+	display: none;
 }
 
 
@@ -391,7 +466,7 @@ a:hover {
 }
 
 .footer {
-	color: #333;
+	color: #fff;
 	margin: 20px 0px 0px 0px;
 	padding: 0px;
 }
@@ -409,16 +484,12 @@ a:hover {
 
 .footer a {
 	text-decoration: none;
-	color: #333;
+	color: #fff;
 	font-size: 12px;
 }
 .footer a:hover {
 	color: #CCC;
 }
-
-
-
-
 
 
 .project-container {margin: 0px; padding: 10px;background: url(i/add-bg.gif) bottom repeat-x #f6f6f6;}
@@ -535,6 +606,15 @@ a:hover {
 	background: #efefef;
 	font-weight: bold;
 }
+.project-folders-v-active a{
+	padding: 6px 10px;
+	text-decoration: none;
+	display: block;
+	color: #333;
+	background: #efefef;
+	font-weight: bold;
+}
+
 	
 .money-table-header {
 	background: #efefef;
@@ -710,8 +790,11 @@ a:hover {
 	padding: 0px 0px 10px 0px;
 }
 .iat input {
-	width: 99% !important;
+	width: 99%;
 	}
+.iat input[type="checkbox"]{
+	width: auto !important;
+}
 
 .print-container {
 	width: 800px;

@@ -20,18 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0937aed0-78c9-4eea-b652-1cd7e3fe0329" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/include/.htaccess" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/.htaccess" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/catalog.php" beforeDir="false" afterPath="$PROJECT_DIR$/include/catalog.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/include/function.php" beforeDir="false" afterPath="$PROJECT_DIR$/include/function.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/login_form.php" beforeDir="false" afterPath="$PROJECT_DIR$/include/login_form.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/passwords.php" beforeDir="false" afterPath="$PROJECT_DIR$/include/passwords.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/success.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/success.php" beforeDir="false" afterPath="$PROJECT_DIR$/include/success.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/templates/auth.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/messages.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/messages.php" beforeDir="false" afterPath="$PROJECT_DIR$/templates/messages.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +47,7 @@
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="database.data.extractors.current.id" value="JSON-Groovy.json.groovy" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/include" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.general" />
@@ -65,11 +58,10 @@
       <recent name="F:\YandexDisk\OpenServer\OSPanel\domains\task.manager" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\YandexDisk\OpenServer\OSPanel\domains\task.manager\include" />
-      <recent name="D:\YandexDisk\OpenServer\OSPanel\domains\task.manager\templates" />
       <recent name="F:\YandexDisk\OpenServer\OSPanel\domains\task.manager\route\project" />
       <recent name="F:\YandexDisk\OpenServer\OSPanel\domains\task.manager\route\map" />
       <recent name="F:\YandexDisk\OpenServer\OSPanel\domains\task.manager\route\gallery" />
+      <recent name="F:\YandexDisk\OpenServer\OSPanel\domains\task.manager\route\contact" />
     </key>
   </component>
   <component name="SvnConfiguration">
@@ -168,18 +160,7 @@
       <workItem from="1610657835309" duration="10350000" />
       <workItem from="1610743522462" duration="18000" />
       <workItem from="1610915598985" duration="12724000" />
-      <workItem from="1611243900343" duration="365000" />
-      <workItem from="1611257801870" duration="9637000" />
-      <workItem from="1611349856705" duration="1166000" />
-      <workItem from="1611521461061" duration="11672000" />
-      <workItem from="1611613268814" duration="7108000" />
-      <workItem from="1612043777814" duration="8640000" />
-      <workItem from="1614276060256" duration="15075000" />
-      <workItem from="1614358626931" duration="17148000" />
-      <workItem from="1614437258144" duration="12005000" />
-      <workItem from="1614713121119" duration="10794000" />
-      <workItem from="1614958951455" duration="22779000" />
-      <workItem from="1615054047468" duration="5628000" />
+      <workItem from="1611243900343" duration="368000" />
     </task>
     <servers />
   </component>
@@ -223,10 +204,18 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1848" height="286" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1606935509589" />
+    <state width="196" height="457" key="HiddenNamespacesPopup" timestamp="1606155442933">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="196" height="457" key="HiddenNamespacesPopup/0.0.1920.1050@0.0.1920.1050" timestamp="1606155442933" />
     <state x="93" y="345" key="NewPhpFileDialog" timestamp="1610399306358">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="93" y="345" key="NewPhpFileDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1610399306358" />
+    <state x="515" y="195" width="998" height="708" key="SettingsEditor" timestamp="1605128702613">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="515" y="195" width="998" height="708" key="SettingsEditor/0.0.1920.1050@0.0.1920.1050" timestamp="1605128702613" />
     <state x="195" y="455" width="316" height="263" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1609686643462">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -235,14 +224,14 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="60" y="180" key="com.intellij.database.dbimport.ImportDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1606938228353" />
+    <state x="237" y="319" width="408" height="355" key="com.intellij.database.psi.DbRenamePsiElementProcessor.DbRenameDialog" timestamp="1606157356872">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="237" y="319" width="408" height="355" key="com.intellij.database.psi.DbRenamePsiElementProcessor.DbRenameDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1606157356872" />
     <state x="606" y="194" width="716" height="525" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1610139970289">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="606" y="194" width="716" height="525" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1610139970289" />
-    <state x="188" y="107" width="583" height="843" key="find.popup" timestamp="1614981868247">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="188" y="107" width="583" height="843" key="find.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1614981868247" />
     <state x="136" y="247" key="run.anything.popup" timestamp="1608581491523">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>

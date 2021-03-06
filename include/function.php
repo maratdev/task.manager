@@ -1,46 +1,269 @@
 <?php
 include_once 'main_menu.php';
+require_once 'bd.php';
+    $path = strtok($_SERVER["REQUEST_URI"], '?');
 
-function h1($menu){
-    foreach ($menu as $value){
-        $class_active = strpos($_SERVER["REQUEST_URI"], $value['path']);
 
-        if(array_search($class_active, $value)){
-            echo $value['title'];
-        }
+
+    //Создание кук если пройдена проверка login и пароль
+    if (isset($true_form_set)){
+        $_SESSION['login'] = $login_form;
+        $_SESSION['password'] = $pass_form;
+        $_SESSION['id'] = 1;
+
+        $loginFromCookie = setcookie('logins',  $login_form, strtotime("+20 minutes"), '/');
+       // $passwordFromCookie = setcookie('password', $pass_form, strtotime("+20 minutes"), '/');
+        header("Location: ".$path);
+        exit();
     }
 
-    if (($_SERVER["REQUEST_URI"]=='/index.php') or ($_SERVER["REQUEST_URI"]=='/') ){
-        echo "Главная";
+    //Функция вывода названия страницы на которой находися пользователь
+    function h1($menu){
+        foreach ($menu as $value){
+            $class_active = strpos($_SERVER["REQUEST_URI"], $value['path']);
+
+            if(array_search($class_active, $value)){
+                echo $value['title'];
+
+            }
         }
 
+        //Вывод заголовка Главная
+        if ($_SERVER["REQUEST_URI"] == '/' or $_SERVER["REQUEST_URI"] == '/?login=yes'){
+            echo "Главная";
+         }
+    }
+
+
+    //Сортировка меню
+    function arraySort(array $menu, int $sort = SORT_ASC, string $key = 'sort') : array{
+        usort($menu, function($a, $b) use ($sort, $key) {
+            return $sort === SORT_DESC ? $b[$key] <=> $a[$key] : $a[$key] <=> $b[$key];});
+
+        return $menu;
+    }
+
+    foreach ($menu as $key => $val) {
+        $sort[$key] = $val['path'];
+    }
+
+    //вывод title
+    function page_title($menu, $sort){
+        return $menu[array_search($_SERVER['REQUEST_URI'], $sort)]['title'];
+    }
+
+
+    function string_mb_strimwidth($string, $start = 0, $width = 15, $trim = '...') {
+        return rtrim(mb_strimwidth($string, $start, $width, $trim));
+    }
+
+    //добавление класса к ссылке
+    $cssClass= "class='active'";
+    function showMenu(array $menu, string $cssClass, int $sortType = SORT_ASC){
+        $menu = arraySort($menu, $sortType);
+        require($_SERVER['DOCUMENT_ROOT'] . '/templates/menu.php');
+    }
+
+
+    // проверка, если пользователь нажал выход, сессия удаляется
+    //хук для удаления с Chrome
+    $str = $_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"];
+    $reg = "/exit/";
+    if (preg_match($reg, $str) == 1){
+        session_unset();
+        unset($_SESSION);
+        unset($_COOKIE['logins']);
+        //setcookie('logins', null, -1, '/');
+        session_destroy();
+        session_write_close();
+        header("Location: ?login=yes");
+        exit();
+    }
+
+// Перевод в ассоциативный массив
+    function resultToArray($result_set){
+        $results = [];
+        while (($row = mysqli_fetch_assoc($result_set)) != false){
+            $results[] = $row;
+        }
+        return $results;
+    }
+
+//  Поиск пользователю по id
+    function getUserOnId($id){
+        global $link;
+        $result_set = mysqli_query($link,"SELECT * FROM users WHERE id='$id'");
+        return mysqli_fetch_assoc($result_set);
+    }
+
+
+//  Поиск ID пользователя по login
+    function getIdOnLogin($login){
+        global $link;
+        $result_set = mysqli_query($link,"SELECT id FROM users WHERE login='$login'");
+        $row = mysqli_fetch_assoc($result_set);
+        return $row['id'];
+    }
+
+//  Добавление сообщения в БД
+    function addMessage($from, $to, $header, $message, $category, $read_msg){
+        global $link;
+        mysqli_query($link,"INSERT INTO messages (froms, tos, header, message, `date`, `section`, read_msg) 
+                                        VALUES ('$from', '$to', '$header', '$message', UNIX_TIMESTAMP(), '$category', '$read_msg')");
+    }
+
+
+//  Вывод всех сообщений
+    function getAllMessages($to){
+        global $link;
+        $result_set = mysqli_query($link,"SELECT * FROM messages WHERE tos = '$to' ORDER BY `date` DESC ");
+        return resultToArray($result_set);
+    }
+
+
+//  Вывод категории сообщения
+function getSectionOnId($id){
+    global $link;
+    $result_set = mysqli_query($link,"SELECT * FROM categories WHERE id='$id'");
+    return mysqli_fetch_assoc($result_set);
 }
 
 
+//  Поиск пользователю по login
+function getIdOnUsers($login){
+    global $link;
+    $result_set = mysqli_query($link,"SELECT * FROM users WHERE id='$login'");
+    return mysqli_fetch_assoc($result_set);
+}
 
+// Выборка из БД письма для тега option
+function get_cat(){
+    global $link;
+    $sql = "SELECT * FROM categories";
+    $result = mysqli_query($link, $sql);
+    $arr_cat = [];
 
-function arraySort(array $menu, int $sort = SORT_ASC, string $key = 'sort') : array
-{
-    usort($menu, function($a, $b) use ($sort, $key) {
-        return $sort === SORT_DESC ? $b[$key] <=> $a[$key] : $a[$key] <=> $b[$key];});
-
-    return $menu;
-
+    if(mysqli_num_rows($result) != 0){
+        for ($i = 0; $i < mysqli_num_rows($result); $i++){
+            $row = mysqli_fetch_assoc($result);
+            if (empty($arr_cat[$row['parent_id']])){
+                $arr_cat[$row['parent_id']] = [];
+            }
+            $arr_cat[$row['parent_id']][]= $row;
+        }
+    }
+    return $arr_cat;
 }
 
 
-function string_mb_strimwidth($string, $start = 0, $width = 15, $trim = '...') {
-    return rtrim(mb_strimwidth($string, $start, $width, $trim));
+// Вывод загловка письма в теге option 2
+function view_cat($arr, $parent_id = 0){
+    if (empty($arr[$parent_id])){
+        return;
+    }
+
+    for ($i = 0; $i < count($arr[$parent_id]); $i++){
+        if ($parent_id == 0){
+            $disabled = 'disabled';
+        }else{
+            $arrows = '⋅';
+        }
+        echo "
+            <option $disabled value=".$arr[$parent_id][$i]['id']." style='color: ".$arr[$parent_id][$i]['color']."'>$arrows ".$arr[$parent_id][$i]['title']."</option>";
+        view_cat($arr, $arr[$parent_id][$i]['id']);
+    }
 }
 
-$cssClass= "class='active'";
-function showMenu(array $menu, string $cssClass, int $sortType = SORT_ASC){
-    $menu = arraySort($menu, $sortType);
-    require($_SERVER['DOCUMENT_ROOT'] . '/templates/menu.php');
-}
+// Распечатка массива
+//Вывод многоуровневого меню методом Tommy Lacroix tree
+    function map_tree($dataset) {
+        $tree = [];
+        foreach ($dataset as $id => &$node) {
+            if (!$node['parent_id']){
+                $tree[$id] = &$node;
+            }else{
+                $dataset[$node['parent_id']]['childs'][$id] = &$node;
+            }
+        }
+        return $tree;
+    }
+
+// Дерево в строуку HTML
+    function categoriesToString($data){
+        foreach ($data as $item){
+            $string .= categoriesToTemplate($item);
+        }
+        return $string;
+    }
 
 
+    // Шаблон вывода категорий
+    function categoriesToTemplate($category){
+            ob_start();
+            include 'category_template.php';
+            return ob_get_clean();
+    }
 
+    function get_categories (){
+        global $link;
+        $query = "SELECT * FROM categories";
+        $res = mysqli_query($link, $query);
+        $arr_cat = [];
+        while ($row = mysqli_fetch_assoc($res)){
+            $arr_cat[$row['id']] = $row;
+        }
+        return $arr_cat;
+    }
 
+    // Получение ID дочерных категорий
+    function cats_id($array, $id){
+        if(!id) return false;
+
+        foreach ($array as $item) {
+            if ($item['parent_id'] == $id){
+                $data .= $item['id'] . ",";
+                $data .= cats_id($array, $item['id']);
+            }
+        }
+        return $data;
+    }
+
+    // Хлебные крошки
+    function breadcrumbs($array, $id){
+        if (!$id) return false;
+
+        $count = count($array);
+        $breadcrumbs_array = [];
+        for ($i = 0; $i < $count; $i++){
+            if ($array[$id]){
+                $breadcrumbs_array[$array[$id]['id']] = $array[$id]['title'];
+                $id = $array[$id]['parent_id'];
+            }else break;
+        }
+        return array_reverse($breadcrumbs_array, true);
+    }
+
+    // Получение писем
+    function get_messages($ids, $to){
+        global $link;
+        global $mess;
+        $my_messages = [];
+        if (is_int($ids) and !empty($to)){
+            $query = "SELECT * FROM messages
+                        LEFT JOIN categories 
+                        ON categories.id = $ids
+                        WHERE messages.tos = $to
+                        ORDER BY `date` DESC ";
+
+            $res = mysqli_query($link, $query) or trigger_error(mysqli_error($link)." in ". $query);
+            while ($row = mysqli_fetch_array($res)){
+                $my_messages[] = $row;
+            }
+        }else{
+           $mess = 'Нет сообщений!';
+        }
+            return $my_messages;
+
+    }
 
 

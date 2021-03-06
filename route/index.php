@@ -1,12 +1,16 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT']. '/include/function.php';
+session_name('session_id');
+session_start();
+
 include_once $_SERVER['DOCUMENT_ROOT']. '/include/login_form.php';
+include_once $_SERVER['DOCUMENT_ROOT']. '/include/function.php';
+
 ?>
 <!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link href="../styles.css" rel="stylesheet" />
+    <link href="../../styles.css" rel="stylesheet" />
     <title>Project - ведение списков</title>
     <style>
         .hidden{
@@ -20,55 +24,38 @@ include_once $_SERVER['DOCUMENT_ROOT']. '/include/login_form.php';
 
 <body>
 
-<? include_once $_SERVER['DOCUMENT_ROOT']. '/templates/header.php' ?>
+<?php include_once $_SERVER['DOCUMENT_ROOT']. '/templates/header.php' ?>
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
         <td class="left-collum-index">
-
             <h1>Возможности проекта — <? h1($menu)?></h1>
-            <p>Вести свои личные списки, например покупки в магазине, цели, задачи и многое другое. Делится списками с друзьями и просматривать списки друзей.</p>
-
-            <h2><? if($true_form_set){ require$_SERVER['DOCUMENT_ROOT']. '/include/success.php';} if($view){require 'include/error.php';}; ?>  </h2>
-
-
-            <?if (!empty($get_login == 'yes')){ ?>
-
-
+            <h2><?= page_title($menu, $sort); ?></h2>
+            <?php include_once $_SERVER['DOCUMENT_ROOT']. '/templates/auth.php'; ?>
+            <h2><?php if(isset($true_form_set)){ require $_SERVER['DOCUMENT_ROOT'].'/include/success.php';}
+            if(isset($view)){require $_SERVER['DOCUMENT_ROOT'].'/include/error.php';}; ?> </h2>
         </td>
-        <td class="right-collum-index">
-
-            <div class="project-folders-menu">
-                <ul class="project-folders-v">
-                    <li class="project-folders-v-active"><span>Авторизация</span></li>
-                    <li><a href="#">Регистрация</a></li>
-                    <li><a href="#">Забыли пароль?</a></li>
-                </ul>
-                <div style="clear: both;"></div>
-            </div>
-            <div class="index-auth">
-                <form action="" method="POST">
-                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
-
-                        <tr>
-                            <td class="iat">Ваш e-mail: <br /> <input id="login_id" size="30" value="<?=$_POST['login']?>" name="login" /></td>
-                        </tr>
-                        <tr>
-                            <td class="iat">Ваш пароль: <br /> <input id="password_id" type="password" size="30" value="<?=$_POST['password']?>" name="password" /></td>
-                        </tr>
-                        <tr>
-                            <td><input name="submit" type="submit" value="Войти" /></td>
-                        </tr>
-                    </table>
-                </form>
-            </div>
-
-        </td>
+            <?php if(!empty($get_login == 'yes')){ include_once $_SERVER['DOCUMENT_ROOT']. '/templates/form.php';}; ?>
     </tr>
 </table>
-<?php }?>
+            <?php include_once $_SERVER['DOCUMENT_ROOT']. '/templates/footer.php' ?>
 
-<? include_once $_SERVER['DOCUMENT_ROOT']. '/templates/footer.php' ?>
-
+<script>
+    function openCity(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" project-folders-v-active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " project-folders-v-active";
+    }
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
+</script>
 </body>
 </html>

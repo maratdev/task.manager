@@ -1,0 +1,18 @@
+# Запрещение кеширования
+# Необходимо включение модулей
+# mod_headers.c и mod_expires.c
+ 
+# Заголовок Cache-Control
+<IfModule mod_headers.c>
+	Header append Cache-Control "no-store, no-cache, must-revalidate"
+</IfModule>
+ 
+# Заголовок Expires
+<IfModule mod_expires.c>
+	ExpiresActive On ExpiresDefault "now"
+</IfModule>
+
+php_value upload_max_filesize 5M
+php_value post_max_size 5M
+php_value max_file_uploads 5
+php_value  allow_url_include 1
