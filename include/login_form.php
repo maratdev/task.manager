@@ -1,7 +1,6 @@
 <?php
 session_start();
 require_once 'bd.php';
-
 //Регистрация
 if (isset($_POST['reg'])){
     $full_name = strip_tags(trim($_POST['full_name']));
@@ -15,23 +14,22 @@ if (isset($_POST['reg'])){
     if (!empty($password) and !empty($password_confirm)){
         if ($password === $password_confirm){
 
-            $passwordHash =  hash(sha512, $password);
-
             $res = mysqli_query($link,"SELECT * FROM users WHERE login = '$login'");
-                if (mysqli_fetch_array($res)){
-                    $_SESSION['message'] = [
-                        'text'=>'Данный логин занят!',
-                        'status'=>'error'
-                    ];
-                }else{
-                    $query = "INSERT INTO users (full_name, login, password, email, phone, flag_email, last_activity, status) 
-                            VALUES('$full_name', '$login', '$passwordHash','$email', '$phone', '$flag_email', UNIX_TIMESTAMP(), '1')";
-                    mysqli_query($link, $query) or die(mysqli_error($link));
-                    $_SESSION['message'] = [
-                        'text'=>'Регистрация прошла успешно!',
-                        'status'=>'success'
-                    ];
-                }
+            if (mysqli_fetch_array($res)){
+                $_SESSION['message'] = [
+                    'text'=>'Данный логин занят!',
+                    'status'=>'error'
+                ];
+            }else{
+                $hash = password_hash($password, PASSWORD_DEFAULT);
+                $query = "INSERT INTO users (full_name, login, password, email, phone, flag_email, last_activity, status) 
+                            VALUES('$full_name', '$login', '$hash','$email', '$phone', '$flag_email', UNIX_TIMESTAMP(), '1')";
+                mysqli_query($link, $query) or die(mysqli_error($link));
+                $_SESSION['message'] = [
+                    'text'=>'Регистрация прошла успешно!',
+                    'status'=>'success'
+                ];
+            }
 
         }else{
             $_SESSION['message'] = [
@@ -59,29 +57,39 @@ $phoneForm = setcookie('phone', $phone);
 //Авторизация
 if (!empty($_POST['auth'])) {
 
-    $login_form = strip_tags(trim($_POST['login']));
-    $pass_form = strip_tags(trim(hash(sha512, $_POST['password'])));
+    $user_login = strip_tags(trim($_POST['user_login']));
+    $user_password = strip_tags(trim($_POST['user_password']));
 
     //Проверка правильность формы
-    $check_user = mysqli_query($link, "SELECT * FROM users WHERE login = '$login_form' AND password = '$pass_form'");
-   if (mysqli_num_rows($check_user) > 0){
-       $user = mysqli_fetch_assoc($check_user);
-       $_SESSION['user'] = [
-            "id" => $user['id'],
-            "full_name" => $user['full_name'],
-            "email" => $user['email'],
-            "phone" => $user['phone'],
-            "login" => $user['login'],
-            "status" => $user['status'],
-            "flag_email" => $user['flag_email']
-       ];
-       $true_form_set = true;
-   }else{
-       $_SESSION['message'] = [
-           'text'=>'Не правильный логин или пароль',
-           'status'=>'error'
-       ];
-   }
+    $check_user = mysqli_query($link, "SELECT * FROM users WHERE login = '$user_login'");
+    if (mysqli_num_rows($check_user) > 0){
+        $user = mysqli_fetch_assoc($check_user);
+        if (password_verify($user_password, $user['password'])){
+            $_SESSION['user'] = [
+                "id" => $user['id'],
+                "full_name" => $user['full_name'],
+                "email" => $user['email'],
+                "phone" => $user['phone'],
+                "login" => $user['login'],
+                "status" => $user['status'],
+                "flag_email" => $user['flag_email']
+            ];
+
+            $true_form_set = true;
+        }
+        else{
+            $_SESSION['message'] = [
+                'text'=>'Не правильный логин или пароль1',
+                'status'=>'error'
+            ];
+        }
+
+    }else{
+        $_SESSION['message'] = [
+            'text'=>'Не правильный логин или пароль2',
+            'status'=>'error'
+        ];
+    }
 
 }
 
@@ -99,10 +107,3 @@ if ($userOnLine['last_activity'] < (time()-600)){ // 10 минут
 }
 
 $get_login = isset($_GET['login']);
-
-
-
-
-
-
-

@@ -16,9 +16,9 @@
                       <i> Cессия истекла, введи пароль ещё раз </i><br>
                       <?endif;?>
 
-                 <tr><td class="iat">Ваш логин: <br /> <input name="login" value="<?= $_COOKIE["logins"] ?>"/></td></tr>
+                 <tr><td class="iat">Ваш логин: <br /> <input name="user_login" value="<?= $_COOKIE["logins"] ?>"/></td></tr>
                     <tr>
-                        <td class="iat">Ваш пароль: <br /> <input type="password"  value="<?= $_COOKIE["passwords"] ?>" name="password" /></td>
+                        <td class="iat">Ваш пароль: <br /> <input type="password"  value="<?= $_COOKIE["passwords"] ?>" name="user_password" /></td>
                     </tr>
                     <tr>
                         <td><input name="auth" type="submit" value="Войти" /></td>
