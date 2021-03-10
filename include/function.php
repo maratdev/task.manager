@@ -7,11 +7,9 @@ require_once 'bd.php';
 
     //Создание кук если пройдена проверка login и пароль
     if (isset($true_form_set)){
-        $_SESSION['login'] = $login_form;
-        $_SESSION['password'] = $pass_form;
-        $_SESSION['id'] = 1;
-
-        $loginFromCookie = setcookie('logins',  $login_form, strtotime("+20 minutes"), '/');
+       // $_SESSION['id'] = 1;
+        $loginFormSession = $_SESSION['user']['login'];
+        $loginFromCookie = setcookie('logins',  $loginFormSession, strtotime("+20 minutes"), '/');
        // $passwordFromCookie = setcookie('password', $pass_form, strtotime("+20 minutes"), '/');
         header("Location: ".$path);
         exit();
@@ -260,7 +258,7 @@ function view_cat($arr, $parent_id = 0){
                 $my_messages[] = $row;
             }
         }else{
-           $mess = 'Нет сообщений!';
+           $mess = 'Нет сообщений!1';
         }
             return $my_messages;
 

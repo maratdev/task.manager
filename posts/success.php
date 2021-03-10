@@ -13,6 +13,7 @@ include_once ''.$_SERVER['DOCUMENT_ROOT'].'/include/login_form.php';
 include_once ''.$_SERVER['DOCUMENT_ROOT'].'/include/function.php';
 include_once ''.$_SERVER['DOCUMENT_ROOT'].'/include/catalog.php';
 
+print_r($_SESSION['email']);
 
 if ($_GET['read']) {
     $cat = $_GET['category'];
@@ -50,7 +51,8 @@ if ($_GET['read']) {
                     <p> <?= $breadcrumbs;?></p>
                 <br>
                 <div class='side-bar' style='width: 450px; padding: 10px; border: 1px solid cadetblue'>
-                    <?php if($my_messages):?>
+                    <?php
+                    if($my_messages):?>
                         <br>
                         <?php foreach($my_messages as $message):?>
                             <?php if($id  == $message['section']): ?>

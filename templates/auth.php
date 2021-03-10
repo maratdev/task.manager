@@ -49,7 +49,7 @@ session_start();
 
    <?php if ($_SESSION['user']['status'] == 2 or $_SESSION['user']['status'] == 10):  // Пользователь имеющий право писать сообщения (2) ?>
     <!--  // Вывод всех зарегистрированых пользователей и отправка сообщений -->
-        <?php if ($_SESSION['id']):
+        <?php if ($_SESSION['user']['login']):
             $login = $_SESSION['user']['login'];
             $resultAll = mysqli_query($link, "SELECT * FROM users WHERE login != '$login' and status !='1' ");
         ?>
@@ -67,11 +67,12 @@ session_start();
             <?endif;?>
         <?endif;?>
 
-<?php if (!empty($_COOKIE['logins']) and !empty($_SESSION['password'])): ?>
-    <br><br>Ваши куки: <?=$_COOKIE['logins']?> и <?=$_SESSION['password']?>
+<?php if (!empty($_COOKIE['logins']) and !empty($_SESSION['user']['password'])): ?>
+    <br><br>Ваши куки: <?=$_COOKIE['logins']?> и <?=$_SESSION['user']['password']?>
+
 <?endif;?>
 
-<?php if ($_SESSION['id']):?>
+<?php if ($_SESSION['user']['login']):?>
   <br><br><a href = "?action=exit">Выход</a>
 <?endif;?>
 

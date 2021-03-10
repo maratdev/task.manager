@@ -14,6 +14,8 @@ if (isset($_POST['reg'])){
     if (!empty($password) and !empty($password_confirm)){
         if ($password === $password_confirm){
 
+           // $passwordHash =  hash(sha512, $password);
+
             $res = mysqli_query($link,"SELECT * FROM users WHERE login = '$login'");
             if (mysqli_fetch_array($res)){
                 $_SESSION['message'] = [
@@ -57,24 +59,24 @@ $phoneForm = setcookie('phone', $phone);
 //Авторизация
 if (!empty($_POST['auth'])) {
 
-    $user_login = strip_tags(trim($_POST['user_login']));
-    $user_password = strip_tags(trim($_POST['user_password']));
+    $login_form = strip_tags(trim($_POST['user_login']));
+    $pass_form = strip_tags(trim($_POST['user_password']));
 
     //Проверка правильность формы
-    $check_user = mysqli_query($link, "SELECT * FROM users WHERE login = '$user_login'");
+    $check_user = mysqli_query($link, "SELECT * FROM users WHERE login = '$login_form'");
     if (mysqli_num_rows($check_user) > 0){
         $user = mysqli_fetch_assoc($check_user);
-        if (password_verify($user_password, $user['password'])){
+        if (password_verify($pass_form, $user['password'])){
             $_SESSION['user'] = [
                 "id" => $user['id'],
                 "full_name" => $user['full_name'],
                 "email" => $user['email'],
                 "phone" => $user['phone'],
                 "login" => $user['login'],
+                "password" => $user['password'],
                 "status" => $user['status'],
                 "flag_email" => $user['flag_email']
             ];
-
             $true_form_set = true;
         }
         else{
@@ -83,7 +85,6 @@ if (!empty($_POST['auth'])) {
                 'status'=>'error'
             ];
         }
-
     }else{
         $_SESSION['message'] = [
             'text'=>'Не правильный логин или пароль2',
