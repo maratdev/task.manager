@@ -104,6 +104,11 @@ ul.category ul{
 .infoMsgFile a{
 	color: yellow;
 }
+.message{
+	border: 1px dashed #999;
+	padding: 5px 1px;
+	margin-top: 5px;
+}
 
 
 

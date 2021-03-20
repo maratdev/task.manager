@@ -6,9 +6,9 @@ if (!isset($_SESSION['user']['login'])){
     header("Location: /?login=yes");
 }
 
-include_once ''.$_SERVER['DOCUMENT_ROOT'].'/include/function.php';
-include_once ''.$_SERVER['DOCUMENT_ROOT'].'/include/login_form.php';
-include_once ''.$_SERVER['DOCUMENT_ROOT'].'/include/catalog.php';
+include ''.$_SERVER['DOCUMENT_ROOT'].'/include/function.php';
+include ''.$_SERVER['DOCUMENT_ROOT'].'/include/login_form.php';
+include ''.$_SERVER['DOCUMENT_ROOT'].'/include/catalog.php';
 
 $users = getUserOnId($_GET['to']);
 $usersTo =  $_SESSION['user']['login'];

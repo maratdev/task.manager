@@ -1,19 +1,6 @@
 <?php
-include_once 'main_menu.php';
-require_once 'bd.php';
-    $path = strtok($_SERVER["REQUEST_URI"], '?');
-
-
-
-    //Создание кук если пройдена проверка login и пароль
-    if (isset($true_form_set)){
-       // $_SESSION['id'] = 1;
-        $loginFormSession = $_SESSION['user']['login'];
-        $loginFromCookie = setcookie('logins',  $loginFormSession, strtotime("+20 minutes"), '/');
-       // $passwordFromCookie = setcookie('password', $pass_form, strtotime("+20 minutes"), '/');
-        header("Location: ".$path);
-        exit();
-    }
+include 'main_menu.php';
+include 'bd.php';
 
     //Функция вывода названия страницы на которой находися пользователь
     function h1($menu){
@@ -39,14 +26,15 @@ require_once 'bd.php';
             return $sort === SORT_DESC ? $b[$key] <=> $a[$key] : $a[$key] <=> $b[$key];});
 
         return $menu;
-    }
 
-    foreach ($menu as $key => $val) {
-        $sort[$key] = $val['path'];
+
     }
 
     //вывод title
     function page_title($menu, $sort){
+        foreach ($menu as $key => $val) {
+            $sort[$key] = $val['path'];
+        }
         return $menu[array_search($_SERVER['REQUEST_URI'], $sort)]['title'];
     }
 
@@ -59,7 +47,7 @@ require_once 'bd.php';
     $cssClass= "class='active'";
     function showMenu(array $menu, string $cssClass, int $sortType = SORT_ASC){
         $menu = arraySort($menu, $sortType);
-        require($_SERVER['DOCUMENT_ROOT'] . '/templates/menu.php');
+        include($_SERVER['DOCUMENT_ROOT'] . '/templates/menu.php');
     }
 
 
@@ -71,7 +59,7 @@ require_once 'bd.php';
         session_unset();
         unset($_SESSION);
         unset($_COOKIE['logins']);
-        //setcookie('logins', null, -1, '/');
+        setcookie('logins', null, -1, '/');
         session_destroy();
         session_write_close();
         header("Location: ?login=yes");
@@ -137,7 +125,9 @@ function getIdOnUsers($login){
 // Выборка из БД письма для тега option
 function get_cat(){
     global $link;
-    $sql = "SELECT * FROM categories";
+    $sql = "SELECT * FROM color
+             RIGHT JOIN categories ON color.id=categories.color_id
+              ORDER BY categories.id";
     $result = mysqli_query($link, $sql);
     $arr_cat = [];
 
@@ -167,7 +157,8 @@ function view_cat($arr, $parent_id = 0){
             $arrows = '⋅';
         }
         echo "
-            <option $disabled value=".$arr[$parent_id][$i]['id']." style='color: ".$arr[$parent_id][$i]['color']."'>$arrows ".$arr[$parent_id][$i]['title']."</option>";
+            <option $disabled value=".$arr[$parent_id][$i]['id']." style='color: ".$arr[$parent_id][$i]['hex']."'>$arrows ".$arr[$parent_id][$i]['title']."</option>";
+
         view_cat($arr, $arr[$parent_id][$i]['id']);
     }
 }

@@ -34,7 +34,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] .  '/include/login_form.php';
             <h2><? if($true_form_set){ require '../../include/success.php';} if($view){require '../../include/error.php';}; ?>  </h2>
 
 
-            <?if (!empty($get_login == 'yes')){ ?>
+            <?if (isset($get_login)){ ?>
 
 
         </td>

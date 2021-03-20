@@ -21,10 +21,23 @@
   <component name="ChangeListManager">
     <list default="true" id="0937aed0-78c9-4eea-b652-1cd7e3fe0329" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/bd.php" beforeDir="false" afterPath="$PROJECT_DIR$/include/bd.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/catalog.php" beforeDir="false" afterPath="$PROJECT_DIR$/include/catalog.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/include/function.php" beforeDir="false" afterPath="$PROJECT_DIR$/include/function.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/include/login_form.php" beforeDir="false" afterPath="$PROJECT_DIR$/include/login_form.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/passwords.php" beforeDir="false" afterPath="$PROJECT_DIR$/include/passwords.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/posts/add.php" beforeDir="false" afterPath="$PROJECT_DIR$/posts/add.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/posts/success.php" beforeDir="false" afterPath="$PROJECT_DIR$/posts/success.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/route/old/about/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/route/old/about/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/route/old/contact/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/route/old/contact/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/route/old/gallery/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/route/old/gallery/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/route/old/map/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/route/old/map/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/route/old/project/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/route/old/project/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/templates/auth.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/form.php" beforeDir="false" afterPath="$PROJECT_DIR$/templates/form.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/menu.php" beforeDir="false" afterPath="$PROJECT_DIR$/templates/menu.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,16 +66,16 @@
     <property name="settings.editor.selected.configurable" value="preferences.general" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="F:\YandexDisk\OpenServer\OSPanel\domains\task.manager\templates" />
-      <recent name="F:\YandexDisk\OpenServer\OSPanel\domains\task.manager" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\YandexDisk\OpenServer\OSPanel\domains\task.manager\include" />
       <recent name="D:\YandexDisk\OpenServer\OSPanel\domains\task.manager\templates" />
       <recent name="F:\YandexDisk\OpenServer\OSPanel\domains\task.manager\route\project" />
       <recent name="F:\YandexDisk\OpenServer\OSPanel\domains\task.manager\route\map" />
       <recent name="F:\YandexDisk\OpenServer\OSPanel\domains\task.manager\route\gallery" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\YandexDisk\OpenServer\OSPanel\domains\task.manager\templates" />
+      <recent name="F:\YandexDisk\OpenServer\OSPanel\domains\task.manager" />
     </key>
   </component>
   <component name="SvnConfiguration">
@@ -175,7 +188,12 @@
       <workItem from="1615054047468" duration="6253000" />
       <workItem from="1615147811482" duration="7792000" />
       <workItem from="1615319458651" duration="7119000" />
-      <workItem from="1615391603829" duration="2784000" />
+      <workItem from="1615391603829" duration="3708000" />
+      <workItem from="1615568616090" duration="26000" />
+      <workItem from="1615841748551" duration="2345000" />
+      <workItem from="1615924939610" duration="6497000" />
+      <workItem from="1616095511539" duration="6587000" />
+      <workItem from="1616232199186" duration="18924000" />
     </task>
     <servers />
   </component>

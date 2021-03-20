@@ -1,9 +1,5 @@
-<?php
-session_start();
-?>
-
-    <?php //Вывод информации о пользователе
-    if ($_SESSION['id']):?>
+ <?php //Вывод информации о пользователе
+    if (isset($_SESSION['id'])):?>
          <p>Здравствуйте, <b> <?=$_SESSION['user']['full_name']?> </b></p>
          <p>Ваш логин: <b> <?=$_SESSION['user']['login']?> </b></p>
          <p>Ваш номер:<b> <?=$_SESSION['user']['phone']?> </b></p>
@@ -15,7 +11,7 @@ session_start();
     <?endif;?>
 
     <?php // Реализация доступа для администратора 10 - админ 1 -user 2 - send message
-    if ($_SESSION['user']['status'] == 10): ?>
+    if (!empty($_SESSION['user']['status']) && $_SESSION['user']['status'] == 10): ?>
     <!-- Кто из пользователей был онлайн в течении 15 секунд-->
         <?php   $time15s = time()-15; //15 сек
                 $time10m = time()-600; //10 минут ?>
@@ -47,7 +43,7 @@ session_start();
             <?endwhile;?>
     <?endif;?>
 
-   <?php if ($_SESSION['user']['status'] == 2 or $_SESSION['user']['status'] == 10):  // Пользователь имеющий право писать сообщения (2) ?>
+   <?php if (!empty($_SESSION['user']['status']) == 2 or !empty($_SESSION['user']['status']) == 10):  // Пользователь имеющий право писать сообщения (2) ?>
     <!--  // Вывод всех зарегистрированых пользователей и отправка сообщений -->
         <?php if ($_SESSION['user']['login']):
             $login = $_SESSION['user']['login'];
@@ -72,7 +68,7 @@ session_start();
 
 <?endif;?>
 
-<?php if ($_SESSION['user']['login']):?>
+<?php if (!empty($_SESSION['user']['login'])):?>
   <br><br><a href = "?action=exit">Выход</a>
 <?endif;?>
 

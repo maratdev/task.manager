@@ -6,21 +6,23 @@ if (isset($check)){
     unset($_POST['formCheck']);
     header("Location: ".$_SERVER['REQUEST_URI']);
 }
-
-if (!isset($_SESSION['user']['login']) or $_SESSION['user']['id'] != 1){
+print_r($login);
+if (!isset($_SESSION['user']['login']) and $_SESSION['user']['id'] != 1){
     header("Location: /?login=yes");
-    print_r($_SESSION['user']['id']);
 }
-include_once ''.$_SERVER['DOCUMENT_ROOT'].'/include/login_form.php';
-include_once ''.$_SERVER['DOCUMENT_ROOT'].'/include/function.php';
+include ''.$_SERVER['DOCUMENT_ROOT'].'/include/login_form.php';
+include ''.$_SERVER['DOCUMENT_ROOT'].'/include/function.php';
 
 $login = $_SESSION['user']['login'];
+
 if ($_POST['formCheck']){
     $formCheck = $_POST['formCheck'];
 }
 
+
 // Обновление БД статуса юзера для отправки сообщения // 2 -  можно отправлять
     if(empty($formCheck) and $_POST['mod']=='on') {
+        echo '-';
        mysqli_query($link, "UPDATE users SET status = '1' WHERE login != '$login'");
     }else {
         for($i=0; $i < count($formCheck); $i++) {
@@ -33,11 +35,12 @@ if ($_POST['formCheck']){
     //  Обновление БД статуса юзера для отправки сообщения // 1 - нельзя отправлять
     $resultAll2 = mysqli_query($link, "SELECT * FROM users WHERE login != '$login' ");
     while ($result = mysqli_fetch_assoc($resultAll2)){
-        if (isset($formCheck)){
-            $resCheck = array_diff(str_split($result['id']), array_values($formCheck));
+        if (!empty($formCheck) and $_POST['mod']=='on' ){
+            $resCheck = array_diff(explode(' ', $result['id']), array_values($formCheck));
             $strResult = implode($resCheck, '');
-            mysqli_query($link, "UPDATE users SET status = '1' WHERE id = '$strResult'");
+            mysqli_query($link, "UPDATE users SET status = '1' WHERE id = '$strResult' AND login != '$login'");
             $check = true;
+
         }
     }
 ?>

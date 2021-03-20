@@ -1,5 +1,5 @@
 <?
-define("REQUEST", $_SERVER["REQUEST_URI"]);
+
 
 foreach ($menu as $value){
     $class_active = strpos(REQUEST, $value['path']);

@@ -1,6 +1,8 @@
 <?php
 session_start();
 require_once 'bd.php';
+
+
 //Регистрация
 if (isset($_POST['reg'])){
     $full_name = strip_tags(trim($_POST['full_name']));
@@ -11,11 +13,19 @@ if (isset($_POST['reg'])){
     $flag_email = strip_tags(trim($_POST['flag_email']));
     $password_confirm = strip_tags(trim($_POST['password_confirm']));
 
+    $loginForm = setcookie('login', $login);
+    $passwordForm = setcookie('password', $password);
+    $full_nameForm = setcookie('full_name', $full_name);
+    $emailForm = setcookie('email', $email);
+    $phoneForm = setcookie('phone', $phone);
+
+    $path = strtok($_SERVER["REQUEST_URI"], '#');
+
     if (!empty($password) and !empty($password_confirm)){
+
         if ($password === $password_confirm){
 
            // $passwordHash =  hash(sha512, $password);
-
             $res = mysqli_query($link,"SELECT * FROM users WHERE login = '$login'");
             if (mysqli_fetch_array($res)){
                 $_SESSION['message'] = [
@@ -31,6 +41,9 @@ if (isset($_POST['reg'])){
                     'text'=>'Регистрация прошла успешно!',
                     'status'=>'success'
                 ];
+                foreach($_COOKIE as $key => $value) setcookie($key, '', time() - 3600, '/');
+                header("Refresh:0; url=$path");
+
             }
 
         }else{
@@ -38,22 +51,22 @@ if (isset($_POST['reg'])){
                 'text'=>'Пароли не совпадают!',
                 'status'=>'error'
             ];
+            header("Refresh:0; url=$path");
+
+
         }
+
     }else{
         $_SESSION['message'] = [
             'text'=>'Ввели не все значения!',
             'status'=>'error'
         ];
+        header("Refresh:0; url=$path");
 
     }
 
 }
 
-$loginForm = setcookie('login', $login);
-$passwordForm = setcookie('password', $password);
-$full_nameForm = setcookie('full_name', $full_name);
-$emailForm = setcookie('email', $email);
-$phoneForm = setcookie('phone', $phone);
 
 
 //Авторизация
@@ -77,24 +90,35 @@ if (!empty($_POST['auth'])) {
                 "status" => $user['status'],
                 "flag_email" => $user['flag_email']
             ];
-            $true_form_set = true;
+
+                //Создание кук если пройдена проверка login и пароль
+                $path = strtok($_SERVER["REQUEST_URI"], '?');
+                $_SESSION['id'] = 1;
+                $loginFromCookie = setcookie('logins',  $_SESSION['user']['login'], strtotime("+20 minutes"), '/');
+                //$passwordFromCookie = setcookie('password', $_SESSION['user']['password'], strtotime("+20 minutes"), '/');
+                header("Location: ".$path);
+                exit();
+
         }
         else{
             $_SESSION['message'] = [
-                'text'=>'Не правильный логин или пароль1',
+                'text'=>'Не правильный логин или пароль.',
                 'status'=>'error'
             ];
         }
     }else{
         $_SESSION['message'] = [
-            'text'=>'Не правильный логин или пароль2',
+            'text'=>'Не правильный логин или пароль!',
             'status'=>'error'
         ];
     }
 
 }
 
+
 //Онлайн или нет
+if (!empty($_SESSION['user']['login'])){
+
 $OnLine = mysqli_query($link, "UPDATE users SET last_activity = UNIX_TIMESTAMP()  WHERE login = '".$_SESSION['user']['login']."'"); // Закоментироать что бы проверить работу функции онлайн или нет
 
 $userOnLine = mysqli_fetch_assoc(mysqli_query($link, "SELECT * FROM users 
@@ -106,5 +130,6 @@ if ($userOnLine['last_activity'] < (time()-600)){ // 10 минут
     $_SESSION['online'] = 'Да';
 
 }
-
+}
 $get_login = isset($_GET['login']);
+

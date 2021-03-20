@@ -12,13 +12,13 @@
         <div id="Auth" class="tabcontent index-auth">
             <form action="" method="POST">
                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                    <? if (!$_SESSION['login'] && $_COOKIE['logins']): ?>
+                    <? if (!isset($_SESSION['login']) && $_COOKIE['logins']): ?>
                       <i> Cессия истекла, введи пароль ещё раз </i><br>
                       <?endif;?>
 
                  <tr><td class="iat">Ваш логин: <br /> <input name="user_login" value="<?= $_COOKIE["logins"] ?>"/></td></tr>
                     <tr>
-                        <td class="iat">Ваш пароль: <br /> <input type="password"  value="<?= $_COOKIE["passwords"] ?>" name="user_password" /></td>
+                        <td class="iat">Ваш пароль: <br /> <input type="password"  name="user_password" /></td>
                     </tr>
                     <tr>
                         <td><input name="auth" type="submit" value="Войти" /></td>
