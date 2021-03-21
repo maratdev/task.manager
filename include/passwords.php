@@ -6,13 +6,12 @@ if (isset($check)){
     unset($_POST['formCheck']);
     header("Location: ".$_SERVER['REQUEST_URI']);
 }
-print_r($login);
-if (!isset($_SESSION['user']['login']) and $_SESSION['user']['id'] != 1){
+
+if ($_SESSION['user']['id'] != 1){
     header("Location: /?login=yes");
 }
-include ''.$_SERVER['DOCUMENT_ROOT'].'/include/login_form.php';
-include ''.$_SERVER['DOCUMENT_ROOT'].'/include/function.php';
 
+include ''.$_SERVER['DOCUMENT_ROOT'].'/include/function.php';
 $login = $_SESSION['user']['login'];
 
 if ($_POST['formCheck']){
@@ -23,22 +22,22 @@ if ($_POST['formCheck']){
 // Обновление БД статуса юзера для отправки сообщения // 2 -  можно отправлять
     if(empty($formCheck) and $_POST['mod']=='on') {
         echo '-';
-       mysqli_query($link, "UPDATE users SET status = '1' WHERE login != '$login'");
+       mysqli_query(getConnection(), "UPDATE users SET status = '1' WHERE login != '$login'");
     }else {
         for($i=0; $i < count($formCheck); $i++) {
             if(isset($formCheck)==$formCheck[$i]) {
-                mysqli_query($link, "UPDATE users SET status = '2' WHERE id = '$formCheck[$i]'");
+                mysqli_query(getConnection(), "UPDATE users SET status = '2' WHERE id = '$formCheck[$i]'");
                     $check = true;
             }
         }
     }
     //  Обновление БД статуса юзера для отправки сообщения // 1 - нельзя отправлять
-    $resultAll2 = mysqli_query($link, "SELECT * FROM users WHERE login != '$login' ");
+    $resultAll2 = mysqli_query(getConnection(), "SELECT * FROM users WHERE login != '$login' ");
     while ($result = mysqli_fetch_assoc($resultAll2)){
         if (!empty($formCheck) and $_POST['mod']=='on' ){
             $resCheck = array_diff(explode(' ', $result['id']), array_values($formCheck));
             $strResult = implode($resCheck, '');
-            mysqli_query($link, "UPDATE users SET status = '1' WHERE id = '$strResult' AND login != '$login'");
+            mysqli_query(getConnection(), "UPDATE users SET status = '1' WHERE id = '$strResult' AND login != '$login'");
             $check = true;
 
         }
@@ -70,7 +69,7 @@ if ($_POST['formCheck']){
         </thead>
         <tbody>
             <?php if ($_SESSION['id']):
-                $resultAll = mysqli_query($link, "SELECT * FROM users WHERE login != '$login' "); // Вывод ?>
+                $resultAll = mysqli_query(getConnection(), "SELECT * FROM users WHERE login != '$login' "); // Вывод ?>
                 <?php if($resultAll): ?>
                 <?php while ($result = mysqli_fetch_assoc($resultAll)):?>
                     <tr>

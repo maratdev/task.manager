@@ -21,8 +21,8 @@ if ($_GET['category']){
     // ID дочерных категорий
     $ids = cats_id($categories, $id);
     $ids = !$ids ? $id : rtrim($ids, ',');
-    $tos = getAllMessages(getIdOnLogin($_SESSION['user']['login']));
-
+    $froms = getUserOnId($_SESSION['user']['id']);
+    $tos = getAllMessages($froms['id']);
     foreach ($tos as $item){
        $to = $item['tos'];
     }

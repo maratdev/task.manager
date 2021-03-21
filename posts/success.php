@@ -10,7 +10,7 @@ if (!isset($_SESSION['user']['login'])){
     header("Location: /");
 }
 
-include ''.$_SERVER['DOCUMENT_ROOT'].'/include/login_form.php';
+//include ''.$_SERVER['DOCUMENT_ROOT'].'/include/login_form.php';
 include ''.$_SERVER['DOCUMENT_ROOT'].'/include/function.php';
 include ''.$_SERVER['DOCUMENT_ROOT'].'/include/catalog.php';
 
@@ -19,7 +19,7 @@ if ($_GET['read']) {
     $cat = $_GET['category'];
     $id = $_GET['read'];
 
-    mysqli_query($link, "UPDATE messages SET read_msg = '0' WHERE id = '$id'");
+    mysqli_query(getConnection(), "UPDATE messages SET read_msg = '0' WHERE id = '$id'");
     header("Location: ?category=".$cat);
 
 }
@@ -36,7 +36,7 @@ if ($_GET['read']) {
 </head>
 <body>
 
-<?php include_once '../templates/header.php' ?>
+<?php include '../templates/header.php' ?>
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
@@ -91,3 +91,6 @@ if ($_GET['read']) {
 </script>
 </body>
 </html>
+
+
+

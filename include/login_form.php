@@ -5,13 +5,14 @@ require_once 'bd.php';
 
 //Регистрация
 if (isset($_POST['reg'])){
-    $full_name = strip_tags(trim($_POST['full_name']));
-    $login = strip_tags(trim($_POST['login']));
-    $password = strip_tags(trim($_POST['password']));
-    $email = strip_tags(trim($_POST['email']));
-    $phone = strip_tags(trim($_POST['phone']));
-    $flag_email = strip_tags(trim($_POST['flag_email']));
-    $password_confirm = strip_tags(trim($_POST['password_confirm']));
+    $full_name = mysqli_real_escape_string(getConnection(), strip_tags(trim($_POST['full_name'])));
+    $login = mysqli_real_escape_string(getConnection(), strip_tags(trim($_POST['login'])));
+    $password = mysqli_real_escape_string(getConnection(), strip_tags(trim($_POST['password'])));
+    $email = mysqli_real_escape_string(getConnection(), strip_tags(trim($_POST['email'])));
+    $phone = mysqli_real_escape_string(getConnection(), strip_tags(trim($_POST['phone'])));
+    $flag_email = mysqli_real_escape_string(getConnection(), strip_tags(trim($_POST['flag_email'])));
+    $password_confirm = mysqli_real_escape_string(getConnection(), strip_tags(trim($_POST['password_confirm'])));
+
 
     $loginForm = setcookie('login', $login);
     $passwordForm = setcookie('password', $password);
@@ -25,8 +26,7 @@ if (isset($_POST['reg'])){
 
         if ($password === $password_confirm){
 
-           // $passwordHash =  hash(sha512, $password);
-            $res = mysqli_query($link,"SELECT * FROM users WHERE login = '$login'");
+            $res = mysqli_query(getConnection(),"SELECT * FROM users WHERE login = '$login'");
             if (mysqli_fetch_array($res)){
                 $_SESSION['message'] = [
                     'text'=>'Данный логин занят!',
@@ -36,7 +36,7 @@ if (isset($_POST['reg'])){
                 $hash = password_hash($password, PASSWORD_DEFAULT);
                 $query = "INSERT INTO users (full_name, login, password, email, phone, flag_email, last_activity, status) 
                             VALUES('$full_name', '$login', '$hash','$email', '$phone', '$flag_email', UNIX_TIMESTAMP(), '1')";
-                mysqli_query($link, $query) or die(mysqli_error($link));
+                mysqli_query(getConnection(), $query) or die(mysqli_error(getConnection()));
                 $_SESSION['message'] = [
                     'text'=>'Регистрация прошла успешно!',
                     'status'=>'success'
@@ -68,15 +68,14 @@ if (isset($_POST['reg'])){
 }
 
 
-
 //Авторизация
 if (!empty($_POST['auth'])) {
 
-    $login_form = strip_tags(trim($_POST['user_login']));
-    $pass_form = strip_tags(trim($_POST['user_password']));
+    $login_form = mysqli_real_escape_string(getConnection(), strip_tags(trim($_POST['user_login'])));
+    $pass_form = mysqli_real_escape_string(getConnection(), strip_tags(trim($_POST['user_password'])));
 
     //Проверка правильность формы
-    $check_user = mysqli_query($link, "SELECT * FROM users WHERE login = '$login_form'");
+    $check_user = mysqli_query(getConnection(), "SELECT * FROM users WHERE login = '$login_form'");
     if (mysqli_num_rows($check_user) > 0){
         $user = mysqli_fetch_assoc($check_user);
         if (password_verify($pass_form, $user['password'])){
@@ -117,11 +116,12 @@ if (!empty($_POST['auth'])) {
 
 
 //Онлайн или нет
+
 if (!empty($_SESSION['user']['login'])){
 
-$OnLine = mysqli_query($link, "UPDATE users SET last_activity = UNIX_TIMESTAMP()  WHERE login = '".$_SESSION['user']['login']."'"); // Закоментироать что бы проверить работу функции онлайн или нет
+$OnLine = mysqli_query(getConnection(), "UPDATE users SET last_activity = UNIX_TIMESTAMP()  WHERE login = '".$_SESSION['user']['login']."'"); // Закоментироать что бы проверить работу функции онлайн или нет
 
-$userOnLine = mysqli_fetch_assoc(mysqli_query($link, "SELECT * FROM users 
+$userOnLine = mysqli_fetch_assoc(mysqli_query(getConnection(), "SELECT * FROM users 
                                                             WHERE login = '".$_SESSION['user']['login']."'"));
 
 if ($userOnLine['last_activity'] < (time()-600)){ // 10 минут

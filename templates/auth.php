@@ -15,7 +15,7 @@
     <!-- Кто из пользователей был онлайн в течении 15 секунд-->
         <?php   $time15s = time()-15; //15 сек
                 $time10m = time()-600; //10 минут ?>
-        <?php $whoOnline = mysqli_query($link, "SELECT * FROM users WHERE last_activity > '".($time15s)."' "); ?>
+        <?php $whoOnline = mysqli_query(getConnection(), "SELECT * FROM users WHERE last_activity > '".($time15s)."' "); ?>
         <hr>
         <p><b>Кто онлайн:</b></p>
         <?php while ($result = mysqli_fetch_assoc($whoOnline)): ?>
@@ -43,11 +43,11 @@
             <?endwhile;?>
     <?endif;?>
 
-   <?php if (!empty($_SESSION['user']['status']) == 2 or !empty($_SESSION['user']['status']) == 10):  // Пользователь имеющий право писать сообщения (2) ?>
+   <?php if ($_SESSION['user']['status'] == 2 or $_SESSION['user']['status'] == 10):  // Пользователь имеющий право писать сообщения (2) ?>
     <!--  // Вывод всех зарегистрированых пользователей и отправка сообщений -->
         <?php if ($_SESSION['user']['login']):
             $login = $_SESSION['user']['login'];
-            $resultAll = mysqli_query($link, "SELECT * FROM users WHERE login != '$login' and status !='1' ");
+            $resultAll = mysqli_query(getConnection(), "SELECT * FROM users WHERE login != '$login' and status !='1' ");
         ?>
     <?php if($resultAll): ?>
                 <p><b>Отправить сообщение:</b></p>

@@ -5,6 +5,10 @@ session_start();
 if (!isset($_SESSION['user']['login'])){
     header("Location: /?login=yes");
 }
+if (isset($_POST['smessage1'])){
+    $path = strtok($_SERVER["REQUEST_URI"], '#');
+    header("Location: ".$path);
+}
 
 include ''.$_SERVER['DOCUMENT_ROOT'].'/include/function.php';
 include ''.$_SERVER['DOCUMENT_ROOT'].'/include/login_form.php';
@@ -13,22 +17,25 @@ include ''.$_SERVER['DOCUMENT_ROOT'].'/include/catalog.php';
 $users = getUserOnId($_GET['to']);
 $usersTo =  $_SESSION['user']['login'];
 $usersEmailTo =  $_SESSION['user']['email'];
-$from = getIdOnLogin($_SESSION['user']['login']); //от
+$from = getUserOnId($_SESSION['user']['id']); //от
 
-$resModeration = mysqli_query($link,"SELECT * FROM messages WHERE froms= '$from' AND read_msg = '1'");
-if (mysqli_num_rows($resModeration) > 0){
-    $ModTrue = false;
-}else{
-    $ModTrue = true;
-}
 
-if (!empty($_POST['message']) and !empty($_POST['category']) and $ModTrue == true){
-        $message = $_POST['message'];
-        $header = $_POST['header'];
-        $to = $_POST['to']; // кому
-        $category = $_POST['category'];
+
+$resModeration = mysqli_query(getConnection(),"SELECT * FROM messages WHERE froms= '{$from['id']}' AND read_msg = '1'");
+    if (mysqli_num_rows($resModeration) > 0){
+        $ModTrue = false;
+    }else{
+        $ModTrue = true;
+    }
+
+
+    if (!empty($_POST['message']) and !empty($_POST['category'])){
+        $message = mysqli_real_escape_string(getConnection(), strip_tags(trim($_POST['message'])));
+        $header = mysqli_real_escape_string(getConnection(), strip_tags(trim($_POST['header'])));
+        $to = mysqli_real_escape_string(getConnection(), strip_tags(trim($_POST['to']))); // кому
+        $category = mysqli_real_escape_string(getConnection(), strip_tags(trim($_POST['category'])));
         $read_msg = 1; // Не прочитано
-        addMessage($from, $to, $header, $message, $category, $read_msg);
+        addMessage($from['id'], $to, $header, $message, $category, $read_msg);
         $_SESSION['pm'] = 1;
     }
 
@@ -74,7 +81,7 @@ if($_SESSION['user']['status'] != 1): ?>
             <p><input type="hidden" name="header" value="Модерация"></p>
             <p><textarea hidden rows="10" cols="45" name="message" placeholder="" >Ник: <b><?=$usersTo?> </b> Почта: <b><?=$usersEmailTo?> </b></textarea></p>
             <p><input type="hidden" name="to" value="<?=$_GET['to']?>"></p>
-            <p><input type="submit" <?=$ModTrue != true  ? 'disabled' : ''; ?> name="smessage" value="Отправить"></p>
+            <p><input type="submit" <?=$ModTrue != true  ? 'disabled' : ''; ?> name="smessage1" value="Отправить"></p>
         </table>
     </form>
 <?php endif;  ?>

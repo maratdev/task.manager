@@ -34,7 +34,7 @@ include $_SERVER['DOCUMENT_ROOT'] .  '/include/login_form.php';
             <h2><? if($true_form_set){ require '../../include/success.php';} if($view){require '../../include/error.php';}; ?>  </h2>
 
 
-            <?if (isset($get_login)){ ?>
+            <?if ($_GET['login'] == 'yes' && isset($get_login)){ ?>
 
 
         </td>

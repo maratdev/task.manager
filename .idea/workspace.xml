@@ -29,15 +29,10 @@
       <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/posts/add.php" beforeDir="false" afterPath="$PROJECT_DIR$/posts/add.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/posts/success.php" beforeDir="false" afterPath="$PROJECT_DIR$/posts/success.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/route/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/route/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/route/old/about/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/route/old/about/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/route/old/contact/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/route/old/contact/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/route/old/gallery/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/route/old/gallery/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/route/old/map/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/route/old/map/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/route/old/project/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/route/old/project/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/templates/auth.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/form.php" beforeDir="false" afterPath="$PROJECT_DIR$/templates/form.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/menu.php" beforeDir="false" afterPath="$PROJECT_DIR$/templates/menu.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -193,7 +188,8 @@
       <workItem from="1615841748551" duration="2345000" />
       <workItem from="1615924939610" duration="6497000" />
       <workItem from="1616095511539" duration="6587000" />
-      <workItem from="1616232199186" duration="18924000" />
+      <workItem from="1616232199186" duration="19110000" />
+      <workItem from="1616324592196" duration="33133000" />
     </task>
     <servers />
   </component>
@@ -213,42 +209,14 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="163" y="131" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606936053237">
+    <state x="93" y="345" key="NewPhpFileDialog" timestamp="1616324606457">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="163" y="131" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1606936053237" />
-    <state x="740" y="280" key="FileChooserDialogImpl" timestamp="1607190145207">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="740" y="280" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1607190145207" />
-    <state width="1848" height="286" key="GridCell.Tab.0.bottom" timestamp="1606935509589">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1848" height="286" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1606935509589" />
-    <state width="1848" height="286" key="GridCell.Tab.0.center" timestamp="1606935509589">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1848" height="286" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1606935509589" />
-    <state width="1848" height="286" key="GridCell.Tab.0.left" timestamp="1606935509588">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1848" height="286" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1606935509588" />
-    <state width="1848" height="286" key="GridCell.Tab.0.right" timestamp="1606935509589">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1848" height="286" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1606935509589" />
-    <state x="93" y="345" key="NewPhpFileDialog" timestamp="1610399306358">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="93" y="345" key="NewPhpFileDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1610399306358" />
+    <state x="93" y="345" key="NewPhpFileDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1616324606457" />
     <state x="195" y="455" width="316" height="263" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1609686643462">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="195" y="455" width="316" height="263" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1/0.0.1920.1050@0.0.1920.1050" timestamp="1609686643462" />
-    <state x="60" y="180" key="com.intellij.database.dbimport.ImportDialog" timestamp="1606938228353">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="60" y="180" key="com.intellij.database.dbimport.ImportDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1606938228353" />
     <state x="606" y="194" width="716" height="525" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1610139970289">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>

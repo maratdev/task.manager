@@ -2,6 +2,15 @@
 include 'main_menu.php';
 include 'bd.php';
 
+    function getConnection() {
+        $connect = @mysqli_connect(DB_SERVER, DB_USER, DB_PASS,DB_NAME);
+        if(!$connect) {
+            die (mysqli_errno().' '.mysqli_error().' Ошибка подключения.');
+        }
+        mysqli_character_set_name($connect);
+        return $connect;
+    }
+
     //Функция вывода названия страницы на которой находися пользователь
     function h1($menu){
         foreach ($menu as $value){
@@ -30,13 +39,24 @@ include 'bd.php';
 
     }
 
+
+
     //вывод title
     function page_title($menu, $sort){
+        $parse = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
         foreach ($menu as $key => $val) {
             $sort[$key] = $val['path'];
         }
-        return $menu[array_search($_SERVER['REQUEST_URI'], $sort)]['title'];
+        return $menu[array_search($parse, $sort)]['title'];
+
     }
+
+//function page_title($menu, $sort){
+//    foreach ($menu as $key => $val) {
+//        $sort[$key] = $val['path'];
+//    }
+//    return $menu[array_search($_SERVER['REQUEST_URI'], $sort)]['title'];
+//}
 
 
     function string_mb_strimwidth($string, $start = 0, $width = 15, $trim = '...') {
@@ -77,58 +97,44 @@ include 'bd.php';
 
 //  Поиск пользователю по id
     function getUserOnId($id){
-        global $link;
-        $result_set = mysqli_query($link,"SELECT * FROM users WHERE id='$id'");
+        $result_set = mysqli_query(getConnection(),"SELECT * FROM users WHERE id='$id'");
         return mysqli_fetch_assoc($result_set);
     }
 
 
-//  Поиск ID пользователя по login
-    function getIdOnLogin($login){
-        global $link;
-        $result_set = mysqli_query($link,"SELECT id FROM users WHERE login='$login'");
-        $row = mysqli_fetch_assoc($result_set);
-        return $row['id'];
-    }
-
 //  Добавление сообщения в БД
     function addMessage($from, $to, $header, $message, $category, $read_msg){
-        global $link;
-        mysqli_query($link,"INSERT INTO messages (froms, tos, header, message, `date`, `section`, read_msg) 
+        mysqli_query(getConnection(),"INSERT INTO messages (froms, tos, header, message, `date`, `section`, read_msg) 
                                         VALUES ('$from', '$to', '$header', '$message', UNIX_TIMESTAMP(), '$category', '$read_msg')");
     }
 
 
 //  Вывод всех сообщений
     function getAllMessages($to){
-        global $link;
-        $result_set = mysqli_query($link,"SELECT * FROM messages WHERE tos = '$to' ORDER BY `date` DESC ");
+        $result_set = mysqli_query(getConnection(),"SELECT * FROM messages WHERE tos = '$to' ORDER BY `date` DESC ");
         return resultToArray($result_set);
     }
 
 
 //  Вывод категории сообщения
 function getSectionOnId($id){
-    global $link;
-    $result_set = mysqli_query($link,"SELECT * FROM categories WHERE id='$id'");
+    $result_set = mysqli_query(getConnection(),"SELECT * FROM categories WHERE id='$id'");
     return mysqli_fetch_assoc($result_set);
 }
 
 
 //  Поиск пользователю по login
 function getIdOnUsers($login){
-    global $link;
-    $result_set = mysqli_query($link,"SELECT * FROM users WHERE id='$login'");
+    $result_set = mysqli_query(getConnection(),"SELECT * FROM users WHERE id='$login'");
     return mysqli_fetch_assoc($result_set);
 }
 
 // Выборка из БД письма для тега option
 function get_cat(){
-    global $link;
     $sql = "SELECT * FROM color
              RIGHT JOIN categories ON color.id=categories.color_id
               ORDER BY categories.id";
-    $result = mysqli_query($link, $sql);
+    $result = mysqli_query(getConnection(), $sql);
     $arr_cat = [];
 
     if(mysqli_num_rows($result) != 0){
@@ -194,9 +200,8 @@ function view_cat($arr, $parent_id = 0){
     }
 
     function get_categories (){
-        global $link;
         $query = "SELECT * FROM categories";
-        $res = mysqli_query($link, $query);
+        $res = mysqli_query(getConnection(), $query);
         $arr_cat = [];
         while ($row = mysqli_fetch_assoc($res)){
             $arr_cat[$row['id']] = $row;
@@ -234,7 +239,6 @@ function view_cat($arr, $parent_id = 0){
 
     // Получение писем
     function get_messages($ids, $to){
-        global $link;
         global $mess;
         $my_messages = [];
         if (is_int($ids) and !empty($to)){
@@ -244,7 +248,7 @@ function view_cat($arr, $parent_id = 0){
                         WHERE messages.tos = $to
                         ORDER BY `date` DESC ";
 
-            $res = mysqli_query($link, $query) or trigger_error(mysqli_error($link)." in ". $query);
+            $res = mysqli_query(getConnection(), $query) or trigger_error(mysqli_error(getConnection())." in ". $query);
             while ($row = mysqli_fetch_array($res)){
                 $my_messages[] = $row;
             }
