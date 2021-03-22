@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'bd.php';
+require 'bd.php';
 
 
 //Регистрация
@@ -15,7 +15,7 @@ if (isset($_POST['reg'])){
 
 
     $loginForm = setcookie('login', $login);
-    $passwordForm = setcookie('password', $password);
+    //$passwordForm = setcookie('password', $password);
     $full_nameForm = setcookie('full_name', $full_name);
     $emailForm = setcookie('email', $email);
     $phoneForm = setcookie('phone', $phone);
@@ -85,7 +85,6 @@ if (!empty($_POST['auth'])) {
                 "email" => $user['email'],
                 "phone" => $user['phone'],
                 "login" => $user['login'],
-                "password" => $user['password'],
                 "status" => $user['status'],
                 "flag_email" => $user['flag_email']
             ];

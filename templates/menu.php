@@ -1,6 +1,4 @@
 <?
-
-
 foreach ($menu as $value){
     $class_active = strpos(REQUEST, $value['path']);
     if ($class_active !== false){
@@ -10,4 +8,4 @@ foreach ($menu as $value){
     }
 
     echo "<li><a $class_active  href='$value[path] '>" .string_mb_strimwidth($value['title'])."</a></li>";
-};
+}

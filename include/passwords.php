@@ -11,7 +11,7 @@ if ($_SESSION['user']['id'] != 1){
     header("Location: /?login=yes");
 }
 
-include ''.$_SERVER['DOCUMENT_ROOT'].'/include/function.php';
+include $_SERVER['DOCUMENT_ROOT'].'/include/function.php';
 $login = $_SESSION['user']['login'];
 
 if ($_POST['formCheck']){

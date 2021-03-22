@@ -11,8 +11,8 @@ if (!isset($_SESSION['user']['login'])){
 }
 
 //include ''.$_SERVER['DOCUMENT_ROOT'].'/include/login_form.php';
-include ''.$_SERVER['DOCUMENT_ROOT'].'/include/function.php';
-include ''.$_SERVER['DOCUMENT_ROOT'].'/include/catalog.php';
+include $_SERVER['DOCUMENT_ROOT'].'/include/function.php';
+include $_SERVER['DOCUMENT_ROOT'].'/include/catalog.php';
 
 
 if ($_GET['read']) {
@@ -74,7 +74,7 @@ if ($_GET['read']) {
                         <?php endif; ?>
                          <?php endforeach; ?>
                    <?php endif;  ?>
-                    <?$mess?>
+                    <?echo (isset($mess) ? 'Нет сообщений!' : '');?>
                 </div>
             </div>
 
@@ -83,7 +83,7 @@ if ($_GET['read']) {
     </tr>
 </table>
 
-<?php include_once '../templates/footer.php' ?>
+<?php include '../templates/footer.php' ?>
 <script>
     $(document).ready(function () {
     $(".category").dcAccordion()

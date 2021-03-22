@@ -10,9 +10,9 @@ if (isset($_POST['smessage1'])){
     header("Location: ".$path);
 }
 
-include ''.$_SERVER['DOCUMENT_ROOT'].'/include/function.php';
-include ''.$_SERVER['DOCUMENT_ROOT'].'/include/login_form.php';
-include ''.$_SERVER['DOCUMENT_ROOT'].'/include/catalog.php';
+include $_SERVER['DOCUMENT_ROOT'].'/include/function.php';
+include $_SERVER['DOCUMENT_ROOT'].'/include/login_form.php';
+include $_SERVER['DOCUMENT_ROOT'].'/include/catalog.php';
 
 $users = getUserOnId($_GET['to']);
 $usersTo =  $_SESSION['user']['login'];

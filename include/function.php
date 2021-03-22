@@ -39,8 +39,6 @@ include 'bd.php';
 
     }
 
-
-
     //вывод title
     function page_title($menu, $sort){
         $parse = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
@@ -50,13 +48,6 @@ include 'bd.php';
         return $menu[array_search($parse, $sort)]['title'];
 
     }
-
-//function page_title($menu, $sort){
-//    foreach ($menu as $key => $val) {
-//        $sort[$key] = $val['path'];
-//    }
-//    return $menu[array_search($_SERVER['REQUEST_URI'], $sort)]['title'];
-//}
 
 
     function string_mb_strimwidth($string, $start = 0, $width = 15, $trim = '...') {
@@ -253,7 +244,7 @@ function view_cat($arr, $parent_id = 0){
                 $my_messages[] = $row;
             }
         }else{
-           $mess = 'Нет сообщений!1';
+           $mess = '';
         }
             return $my_messages;
 
