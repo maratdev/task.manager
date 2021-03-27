@@ -21,7 +21,6 @@ if ($_POST['formCheck']){
 
 // Обновление БД статуса юзера для отправки сообщения // 2 -  можно отправлять
     if(empty($formCheck) and $_POST['mod']=='on') {
-        echo '-';
        mysqli_query(getConnection(), "UPDATE users SET status = '1' WHERE login != '$login'");
     }else {
         for($i=0; $i < count($formCheck); $i++) {
@@ -71,20 +70,19 @@ if ($_POST['formCheck']){
             <?php if ($_SESSION['id']):
                 $resultAll = mysqli_query(getConnection(), "SELECT * FROM users WHERE login != '$login' "); // Вывод ?>
                 <?php if($resultAll): ?>
-                <?php while ($result = mysqli_fetch_assoc($resultAll)):?>
-                    <tr>
-                        <th scope="row"><?=$result['id']?> </th>
-                        <td><?=$result['login']?></td>
-                        <td><?=$result['email']?></td>
-                        <td>
-                            <div class="form-check">
-                                <input class="form-check-input" name="formCheck[]" type="checkbox" id="flexCheckChecked" value="<?=$result['id']?>" <?=($result['status'] == '2'  ? 'checked' : '');?>  >
-                            </div>
-                        </td>
-                    </tr>
-
-                <?endwhile;?>
-            <?endif;?>
+                    <?php while ($result = mysqli_fetch_assoc($resultAll)):?>
+                        <tr>
+                            <th scope="row"><?=$result['id']?> </th>
+                            <td><?=$result['login']?></td>
+                            <td><?=$result['email']?></td>
+                            <td>
+                                <div class="form-check">
+                                    <input class="form-check-input" name="formCheck[]" type="checkbox" id="flexCheckChecked" value="<?=$result['id']?>" <?=($result['status'] == '2'  ? 'checked' : '');?>  >
+                                </div>
+                            </td>
+                        </tr>
+                    <?endwhile;?>
+                <?endif;?>
             <?endif; ?>
         </tbody>
     </table>

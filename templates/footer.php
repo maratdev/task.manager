@@ -1,5 +1,5 @@
 <div class="footer">
-    <?showMenu($menu, $cssClass, $sortType=SORT_DESC); ?>
+    <?php showMenu($menu, $cssClass, $sortType=SORT_DESC); ?>
     &copy;&nbsp;<nobr><?=date('Y')?></nobr> Project.
 </div>
 <script src="../js/jquery-1.9.0.min.js"></script>

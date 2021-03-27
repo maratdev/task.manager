@@ -27,9 +27,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/include/login_form.php';
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
         <td class="left-collum-index">
-            <h1>Возможности проекта — <? h1($menu)?></h1>
-            <h2><?= page_title($menu, $sort); ?></h2>
-
+            <h1>Возможности проекта — <?=isCurrentUrl($_SERVER['REQUEST_URI'], $menu)?></h1>
             <?php include $_SERVER['DOCUMENT_ROOT'].'/templates/auth.php'; ?>
             <h2><?php if(isset($true_form_set)){ include $_SERVER['DOCUMENT_ROOT'].'/posts/success.php';}
             if(isset($view)){include $_SERVER['DOCUMENT_ROOT'].'/include/error.php';} ?> </h2>

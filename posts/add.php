@@ -61,7 +61,7 @@ if($_SESSION['user']['status'] != 1): ?>
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <select name="category">
             <option value="0">Выберите категорию</option>
-            <?
+            <?php
             $result = get_cat();
             view_cat($result);
             ?>

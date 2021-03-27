@@ -1,9 +1,9 @@
-<?
+<?php
 foreach ($menu as $value){
-    $class_active = strpos(REQUEST, $value['path']);
+    $class_active = strpos($_SERVER["REQUEST_URI"], $value['path']);
     if ($class_active !== false){
         $class_active = $cssClass;
-    } elseif  ($value["sort"] == '1' and (REQUEST == '/' or REQUEST == '/?login=yes')){
+    } elseif  ($value["sort"] == '1' and ($_SERVER["REQUEST_URI"] == '' or $_SERVER["REQUEST_URI"] == '/?login=yes')){
         $class_active = $cssClass;
     }
 

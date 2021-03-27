@@ -11,24 +11,7 @@ include 'bd.php';
         return $connect;
     }
 
-    //Функция вывода названия страницы на которой находися пользователь
-    function h1($menu){
-        foreach ($menu as $value){
-            $class_active = strpos($_SERVER["REQUEST_URI"], $value['path']);
-
-            if(array_search($class_active, $value)){
-                echo $value['title'];
-
-            }
-        }
-
-        //Вывод заголовка Главная
-        if ($_SERVER["REQUEST_URI"] == '/' or $_SERVER["REQUEST_URI"] == '/?login=yes'){
-            echo "Главная";
-         }
-    }
-
-
+    
     //Сортировка меню
     function arraySort(array $menu, int $sort = SORT_ASC, string $key = 'sort') : array{
         usort($menu, function($a, $b) use ($sort, $key) {
@@ -36,17 +19,20 @@ include 'bd.php';
 
         return $menu;
 
-
     }
 
     //вывод title
-    function page_title($menu, $sort){
-        $parse = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-        foreach ($menu as $key => $val) {
-            $sort[$key] = $val['path'];
+//Функция вывода названия страницы на которой находися пользователь
+function isCurrentUrl($path, $menu){
+        $parse =parse_url($path, PHP_URL_PATH);
+        $pos = rtrim($parse, '/\\');
+        foreach ($menu as $title=>$url) {
+            if (rtrim($url['path'], '/\\') == $pos){
+               return $url['title'];
+            }elseif(($_SERVER["REQUEST_URI"] == '/' or $_SERVER["REQUEST_URI"] == '/?login=yes')){
+                return 'Главная';
+            }
         }
-        return $menu[array_search($parse, $sort)]['title'];
-
     }
 
 

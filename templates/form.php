@@ -12,7 +12,7 @@
         <div id="Auth" class="tabcontent index-auth">
             <form action="" method="POST">
                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                    <? if (!isset($_SESSION['login']) && $_COOKIE['logins']): ?>
+                    <?php if (!isset($_SESSION['login']) && $_COOKIE['logins']): ?>
                       <i> Cессия истекла, введи пароль ещё раз </i><br>
                       <?endif;?>
 

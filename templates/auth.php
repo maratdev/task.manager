@@ -23,19 +23,19 @@
                 <div class='full_name'>Имя: <?= $result['full_name']?></div>
                 <div class='login'>Логин: <?= $result['login']?> </div>
                 <div class='login'>Статус:
-                <? switch ($result['status']):
+                <?php switch ($result['status']):
                     case 10: ?>
                         Администратор
-                    <? break; ?>
-                    <? case 2: ?>
+                    <?php break; ?>
+                    <?php case 2: ?>
                         Может отправлять сообщения
-                        <? break; ?>
-                    <? case 1: ?>
+                        <?php break; ?>
+                    <?php case 1: ?>
                         Юзер
-                        <? break; ?>
-                    <? default: ?>
+                        <?php break; ?>
+                    <?php default: ?>
                         Не известно.
-                    <? endswitch; ?>
+                    <?php endswitch; ?>
                 </div>
             </div>
             <br>

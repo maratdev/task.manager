@@ -61,17 +61,16 @@
     <property name="settings.editor.selected.configurable" value="preferences.general" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\YandexDisk\OpenServer\OSPanel\domains\task.manager" />
-      <recent name="F:\YandexDisk\OpenServer\OSPanel\domains\task.manager\templates" />
-      <recent name="F:\YandexDisk\OpenServer\OSPanel\domains\task.manager" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\YandexDisk\OpenServer\OSPanel\domains\task.manager\include" />
       <recent name="D:\YandexDisk\OpenServer\OSPanel\domains\task.manager\templates" />
       <recent name="F:\YandexDisk\OpenServer\OSPanel\domains\task.manager\route\project" />
       <recent name="F:\YandexDisk\OpenServer\OSPanel\domains\task.manager\route\map" />
       <recent name="F:\YandexDisk\OpenServer\OSPanel\domains\task.manager\route\gallery" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\YandexDisk\OpenServer\OSPanel\domains\task.manager\templates" />
+      <recent name="F:\YandexDisk\OpenServer\OSPanel\domains\task.manager" />
     </key>
   </component>
   <component name="SvnConfiguration">
@@ -196,7 +195,7 @@
       <workItem from="1616524740512" duration="8155000" />
       <workItem from="1616614701140" duration="12148000" />
       <workItem from="1616698858417" duration="7241000" />
-      <workItem from="1616848336786" duration="4391000" />
+      <workItem from="1616754647014" duration="305000" />
     </task>
     <servers />
   </component>
@@ -216,10 +215,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="93" y="345" key="NewPhpFileDialog" timestamp="1616785678083">
+    <state x="93" y="345" key="NewPhpFileDialog" timestamp="1616621809320">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="93" y="345" key="NewPhpFileDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1616785678083" />
+    <state x="93" y="345" key="NewPhpFileDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1616621809320" />
     <state x="195" y="455" width="316" height="263" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1609686643462">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>

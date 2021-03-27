@@ -10,7 +10,6 @@ if (!isset($_SESSION['user']['login'])){
     header("Location: /");
 }
 
-//include ''.$_SERVER['DOCUMENT_ROOT'].'/include/login_form.php';
 include $_SERVER['DOCUMENT_ROOT'].'/include/function.php';
 include $_SERVER['DOCUMENT_ROOT'].'/include/catalog.php';
 
@@ -21,7 +20,6 @@ if ($_GET['read']) {
 
     mysqli_query(getConnection(), "UPDATE messages SET read_msg = '0' WHERE id = '$id'");
     header("Location: ?category=".$cat);
-
 }
 ?>
 <!doctype html>
@@ -51,14 +49,12 @@ if ($_GET['read']) {
                     <p> <?= $breadcrumbs;?></p>
                 <br>
                 <div class='side-bar' style='width: 450px; padding: 10px; border: 1px solid cadetblue'>
-                    <?php
-                    if($my_messages):?>
+                    <?php if(!empty($my_messages)):?>
                         <?php foreach($my_messages as $message):?>
                             <?php if($id  == $message['section']): ?>
                                     <?php $sections = getSectionOnId($message['section']); ?>
                                     <?php $users = getIdOnUsers($message['froms']); ?>
-                                <br>
-                                <br>
+                                <br><br>
                                     <div class='full_name'>От кого: <?=$users['email']?></div>
                                     <div class='header'>Заголовок: <a href="?category=<?=$sections['id']?>&read=<?=$message[0]?>"> <?=$message['header']?></a></div>
                                     <div class='status_msg'>Статус: <?=$message['read_msg'] == 1 ? '<b style="color: #e37400">Не прочитано</b>' : '<span style="color:#009900 ">Прочитано</span>' ?></div>
@@ -69,15 +65,13 @@ if ($_GET['read']) {
                                     <div class='section'><pre>Раздел: <?=$sections['title']?></pre></div>
                                     <a href="add.php?to=<?=$users["id"]?>">Ответить</a>
                                     <?= $_SESSION['user']['status'] == 10  ? '<a style="margin-left: 5px" href="../include/passwords.php">Модерация</a><br>' : ''?>
-
+                                <?php endif; ?>
                             <?php endif; ?>
-                        <?php endif; ?>
-                         <?php endforeach; ?>
+                        <?php endforeach; ?>
                    <?php endif;  ?>
                     <?echo (isset($mess) ? 'Нет сообщений!' : '');?>
                 </div>
             </div>
-
             <a  href="/">Назад</a>
         </td>
     </tr>

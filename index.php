@@ -18,25 +18,19 @@ include $_SERVER['DOCUMENT_ROOT'].'/include/login_form.php';
 </head>
 
 <body>
-<?php include ''.$_SERVER['DOCUMENT_ROOT'].'/templates/header.php' ?>
+<?php include $_SERVER['DOCUMENT_ROOT'].'/templates/header.php' ?>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
         <td class="left-collum-index">
-            <h1>Возможности проекта — <?php h1($menu); ?></h1>
+            <h1>Возможности проекта — <?=isCurrentUrl($_SERVER['REQUEST_URI'], $menu)?></h1>
             <p>Вести свои личные списки, например покупки в магазине, цели, задачи и многое другое. Делится списками с друзьями и просматривать списки друзей.</p>
-            <?
-
-            ?>
-            <?php  include $_SERVER['DOCUMENT_ROOT']. '/templates/auth.php'; ?>
-
+            <?php include $_SERVER['DOCUMENT_ROOT']. '/templates/auth.php'; ?>
             <?php if (isset($_SESSION['message'])):?>
                 <h2 class="<?=$_SESSION['message']['status']?>"> <?=$_SESSION['message']['text']?>  </h2>
             <?endif; unset($_SESSION['message']); ?>
-
             <h2><?php if(isset($view)){include $_SERVER['DOCUMENT_ROOT'].'/include/error.php';} ?> </h2>
         </td>
-            <?php
-            getConnection();
+            <?php getConnection();
             if($_GET['login'] == 'yes' && isset($get_login)){ include $_SERVER['DOCUMENT_ROOT'].'/templates/form.php';} ?>
 
     </tr>
