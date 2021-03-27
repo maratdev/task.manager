@@ -22,7 +22,7 @@ if (isset($_POST['reg'])){
 
     $path = strtok($_SERVER["REQUEST_URI"], '#');
 
-    if (!empty($password) and !empty($password_confirm)){
+    if (!empty($password) && !empty($password_confirm)){
 
         if ($password === $password_confirm){
 

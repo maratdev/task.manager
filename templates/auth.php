@@ -47,7 +47,7 @@
     <!--  // Вывод всех зарегистрированых пользователей и отправка сообщений -->
         <?php if ($_SESSION['user']['login']):
             $login = $_SESSION['user']['login'];
-            $resultAll = mysqli_query(getConnection(), "SELECT * FROM users WHERE login != '$login' and status !='1' ");
+            $resultAll = mysqli_query(getConnection(), "SELECT * FROM users WHERE login != '$login' && status !='1' ");
         ?>
     <?php if($resultAll): ?>
                 <p><b>Отправить сообщение:</b></p>
@@ -63,7 +63,7 @@
             <?endif;?>
         <?endif;?>
 
-<?php if (!empty($_COOKIE['logins']) and !empty($_SESSION['user']['password'])): ?>
+<?php if (!empty($_COOKIE['logins']) && !empty($_SESSION['user']['password'])): ?>
     <br><br>Ваши куки: <?=$_COOKIE['logins']?> и <?=$_SESSION['user']['password']?>
 
 <?endif;?>

@@ -11,7 +11,7 @@ include 'bd.php';
         return $connect;
     }
 
-    
+
     //Сортировка меню
     function arraySort(array $menu, int $sort = SORT_ASC, string $key = 'sort') : array{
         usort($menu, function($a, $b) use ($sort, $key) {
@@ -218,7 +218,7 @@ function view_cat($arr, $parent_id = 0){
     function get_messages($ids, $to){
         global $mess;
         $my_messages = [];
-        if (is_int($ids) and !empty($to)){
+        if (is_int($ids) && !empty($to)){
             $query = "SELECT * FROM messages
                         LEFT JOIN categories 
                         ON categories.id = $ids
