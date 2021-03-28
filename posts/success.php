@@ -18,7 +18,7 @@ if ($_GET['read']) {
     $cat = $_GET['category'];
     $id = $_GET['read'];
 
-    mysqli_query(getConnection(), "UPDATE messages SET read_msg = '0' WHERE id = '$id'");
+    mysqli_query(getConnection(), "UPDATE messages SET `read` = '0' WHERE id = '$id'");
     header("Location: ?category=".$cat);
 }
 ?>
@@ -57,10 +57,10 @@ if ($_GET['read']) {
                                 <br><br>
                                     <div class='full_name'>От кого: <?=$users['email']?></div>
                                     <div class='header'>Заголовок: <a href="?category=<?=$sections['id']?>&read=<?=$message[0]?>"> <?=$message['header']?></a></div>
-                                    <div class='status_msg'>Статус: <?=$message['read_msg'] == 1 ? '<b style="color: #e37400">Не прочитано</b>' : '<span style="color:#009900 ">Прочитано</span>' ?></div>
+                                    <div class='status_msg'>Статус: <?=$message['read'] == 1 ? '<b style="color: #e37400">Не прочитано</b>' : '<span style="color:#009900 ">Прочитано</span>' ?></div>
 
-                                <?php if($message['read_msg'] == 0 ): ?>
-                                    <div class='message'><b>Сообщение:</b> <i><?=$message['message']?></i></div>
+                                <?php if($message['read'] == 0 ): ?>
+                                    <div class='message'><b>Сообщение:</b> <i><?=$message['text']?></i></div>
                                     <div class='date'><pre>Дата отправки: <?=date('Y-m-d H:i:s', $message['date']);?></pre></div>
                                     <div class='section'><pre>Раздел: <?=$sections['title']?></pre></div>
                                     <a href="add.php?to=<?=$users["id"]?>">Ответить</a>

@@ -20,22 +20,13 @@ $usersEmailTo =  $_SESSION['user']['email'];
 $from = getUserOnId($_SESSION['user']['id']); //от
 
 
-
-$resModeration = mysqli_query(getConnection(),"SELECT * FROM messages WHERE froms= '{$from['id']}' AND read_msg = '1'");
-    if (mysqli_num_rows($resModeration) > 0){
-        $ModTrue = false;
-    }else{
-        $ModTrue = true;
-    }
-
-
     if (!empty($_POST['message']) and !empty($_POST['category'])){
-        $message = mysqli_real_escape_string(getConnection(), strip_tags(trim($_POST['message'])));
+        $text = mysqli_real_escape_string(getConnection(), strip_tags(trim($_POST['message'])));
         $header = mysqli_real_escape_string(getConnection(), strip_tags(trim($_POST['header'])));
         $to = mysqli_real_escape_string(getConnection(), strip_tags(trim($_POST['to']))); // кому
         $category = mysqli_real_escape_string(getConnection(), strip_tags(trim($_POST['category'])));
-        $read_msg = 1; // Не прочитано
-        addMessage($from['id'], $to, $header, $message, $category, $read_msg);
+        $read = 1; // Не прочитано
+        addMessage($from['id'], $to, $header, $text, $category, $read);
         $_SESSION['pm'] = 1;
     }
 
@@ -74,14 +65,14 @@ if($_SESSION['user']['status'] != 1): ?>
 </form>
 <?php else:  ?>
     <form action="add.php?to=<?=$_GET['to']?>" method="POST" >
-        <p style="color: #fff"><?=$_POST['smessage'] == 'Отправить'  ? 'Ваше собщение отправлено!' : ''; unset($_SESSION['pm'])?><?=$ModTrue == true  ? '' : ' Ваше заявка на модерации!';?></p>
+        <p style="color: #fff"><?=$_POST['smessage'] == 'Отправить'  ? 'Ваше собщение отправлено!' : ''; unset($_SESSION['pm'])?><?= resModeration($from['id']) == true  ? '' : ' Ваше заявка на модерации!';?></p>
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <p> <input type="text" disabled value="<?=$usersTo?>" placeholder="<?=$usersTo?>"></p>
             <p><input type="hidden" name="category" value="9"></p>
             <p><input type="hidden" name="header" value="Модерация"></p>
             <p><textarea hidden rows="10" cols="45" name="message" placeholder="" >Ник: <b><?=$usersTo?> </b> Почта: <b><?=$usersEmailTo?> </b></textarea></p>
             <p><input type="hidden" name="to" value="<?=$_GET['to']?>"></p>
-            <p><input type="submit" <?=$ModTrue != true  ? 'disabled' : ''; ?> name="smessage1" value="Отправить"></p>
+            <p><input type="submit" <?= resModeration($from['id']) != true  ? 'disabled' : ''; ?> name="smessage1" value="Отправить"></p>
         </table>
     </form>
 <?php endif;  ?>

@@ -36,7 +36,7 @@
                 <tr><td class="iat">Ваш номер телефона: <br /> <input name="phone" value="<?= $_COOKIE["phone"] ?>"/></td></tr>
                 <tr><td class="iat">Ваш пароль: <br /> <input type="password" value="<?= $_COOKIE["password"] ?>" name="password" /></td></tr>
                 <tr><td class="iat">Подтвердите пароль: <br /> <input type="password" value="" name="password_confirm" /></td></tr>
-                <tr><td class="iat"><p><input type="checkbox" name="flag_email" value="on">Cогласен на получение уведомлений по email</p></td></tr>
+                <tr><td class="iat"><p><input type="checkbox" name="flag_email" value="1">Cогласен на получение уведомлений по email</p></td></tr>
                 <tr>
                     <td><button name="reg" type="submit" >Зарегистрироваться</button></td>
                 </tr>

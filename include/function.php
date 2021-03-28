@@ -80,9 +80,9 @@ function isCurrentUrl($path, $menu){
 
 
 //  Добавление сообщения в БД
-    function addMessage($from, $to, $header, $message, $category, $read_msg){
-        mysqli_query(getConnection(),"INSERT INTO messages (froms, tos, header, message, `date`, `section`, read_msg) 
-                                        VALUES ('$from', '$to', '$header', '$message', UNIX_TIMESTAMP(), '$category', '$read_msg')");
+    function addMessage($from, $to, $header, $text, $category, $read){
+        mysqli_query(getConnection(),"INSERT INTO messages (froms, tos, header, text, `date`, `section`, `read`) 
+                                        VALUES ('$from', '$to', '$header', '$text', UNIX_TIMESTAMP(), '$category', '$read')");
     }
 
 
@@ -235,5 +235,16 @@ function view_cat($arr, $parent_id = 0){
             return $my_messages;
 
     }
+function resModeration($from){
+
+        $resModeration = mysqli_query(getConnection(),"SELECT * FROM messages WHERE froms= '$from' AND `read` = '1'");
+        if (mysqli_num_rows($resModeration) > 0){
+            return false;
+        }else{
+            return true;
+        }
+}
+
+
 
 

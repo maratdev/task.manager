@@ -13,6 +13,7 @@ if (isset($_POST['reg'])){
     $flag_email = mysqli_real_escape_string(getConnection(), strip_tags(trim($_POST['flag_email'])));
     $password_confirm = mysqli_real_escape_string(getConnection(), strip_tags(trim($_POST['password_confirm'])));
 
+    print_r($_POST['checkbox']);
 
     $loginForm = setcookie('login', $login);
     //$passwordForm = setcookie('password', $password);
@@ -34,13 +35,17 @@ if (isset($_POST['reg'])){
                 ];
             }else{
                 $hash = password_hash($password, PASSWORD_DEFAULT);
+                if (empty($flag_email)){
+                    $flag_email = 0;
+                }
                 $query = "INSERT INTO users (full_name, login, password, email, phone, flag_email, last_activity, status) 
                             VALUES('$full_name', '$login', '$hash','$email', '$phone', '$flag_email', UNIX_TIMESTAMP(), '1')";
-                mysqli_query(getConnection(), $query) or die(mysqli_error(getConnection()));
+                mysqli_query(getConnection(), $query) or die('Ошибка БД или запроса: '.mysqli_error(getConnection()));
                 $_SESSION['message'] = [
                     'text'=>'Регистрация прошла успешно!',
                     'status'=>'success'
                 ];
+
                 foreach($_COOKIE as $key => $value) setcookie($key, '', time() - 3600, '/');
                 header("Refresh:0; url=$path");
 

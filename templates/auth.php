@@ -6,7 +6,7 @@
          <p>Ваш email: <b> <?=$_SESSION['user']['email']?> </b></p>
          <?=($_SESSION['user']['status'] == 10 ? '<p>Статус: <b> Администратор </b></p>' : '');?>
          <p>Вы можете отправлять сообщения:  <b> <?=(($_SESSION['user']['status'] == 2 or $_SESSION['user']['status'] == 10) ? 'Да' : '<a href="../posts/add.php?to=1">Нет</a>');?> </b></p>
-         <p>Рассылка email:  <b> <?=($_SESSION['user']['flag_email'] == 'on'  ? 'Да' : 'Нет');?> </b></p>
+         <p>Рассылка email:  <b> <?=($_SESSION['user']['flag_email'] == '1'  ? 'Да' : 'Нет');?> </b></p>
          <?=(($_SESSION['user']['status'] == 2 or $_SESSION['user']['status'] == 10)  ? "<a href = '/posts/success.php'>Входящие сообщения</a>" : "");?>
     <?endif;?>
 

@@ -7,7 +7,7 @@ session_start();
 
 include $_SERVER['DOCUMENT_ROOT'].'/include/function.php';
 include $_SERVER['DOCUMENT_ROOT'].'/include/login_form.php';
-
+//error_reporting(E_ALL);
 ?>
 <!DOCTYPE html>
 <html>
