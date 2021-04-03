@@ -110,6 +110,12 @@ ul.category ul{
 	margin-top: 5px;
 }
 
+.inactiveLink {
+	pointer-events: none;
+	cursor: default;
+	text-decoration: none;
+
+}
 
 
 

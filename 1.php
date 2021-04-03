@@ -49,14 +49,13 @@ $data = [
 
 ?>
 
-<?
+<?php
 echo '=== Авторы ===<br>';
 foreach($data["authors"] as $key => $authors) {
   echo '<p>'.$authors["name"].' - '.$authors['email'].' - '.$authors['birthYear'].'</p>';
    }
 ?>
-<?
-echo '=== Книги ===<br>';
+<?= '=== Книги ===<br>';
 
 foreach($data["books"] as $key) {
     echo '<p>'.$key["title"].' - ';

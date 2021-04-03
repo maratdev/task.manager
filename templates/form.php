@@ -14,7 +14,7 @@
                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                     <?php if (!isset($_SESSION['login']) && $_COOKIE['logins']): ?>
                       <i> Cессия истекла, введи пароль ещё раз </i><br>
-                      <?endif;?>
+                      <?php endif;?>
 
                  <tr><td class="iat">Ваш логин: <br /> <input name="user_login" value="<?= $_COOKIE["logins"] ?>"/></td></tr>
                     <tr>

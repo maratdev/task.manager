@@ -14,7 +14,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/include/function.php';
 include $_SERVER['DOCUMENT_ROOT'].'/include/login_form.php';
 include $_SERVER['DOCUMENT_ROOT'].'/include/catalog.php';
 
-$users = getUserOnId($_GET['to']);
+$users = getUserOnId(mysqli_real_escape_string(getConnection(),$_GET['to']));
 $usersTo =  $_SESSION['user']['login'];
 $usersEmailTo =  $_SESSION['user']['email'];
 $from = getUserOnId($_SESSION['user']['id']); //от
@@ -23,8 +23,8 @@ $from = getUserOnId($_SESSION['user']['id']); //от
     if (!empty($_POST['message']) and !empty($_POST['category'])){
         $text = mysqli_real_escape_string(getConnection(), strip_tags(trim($_POST['message'])));
         $header = mysqli_real_escape_string(getConnection(), strip_tags(trim($_POST['header'])));
-        $to = mysqli_real_escape_string(getConnection(), strip_tags(trim($_POST['to']))); // кому
-        $category = mysqli_real_escape_string(getConnection(), strip_tags(trim($_POST['category'])));
+        $to = strip_tags(trim($_POST['to'])); // кому
+        $category = strip_tags(trim($_POST['category']));
         $read = 1; // Не прочитано
         addMessage($from['id'], $to, $header, $text, $category, $read);
         $_SESSION['pm'] = 1;

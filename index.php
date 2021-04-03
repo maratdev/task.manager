@@ -27,7 +27,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/include/login_form.php';
             <?php include $_SERVER['DOCUMENT_ROOT']. '/templates/auth.php'; ?>
             <?php if (isset($_SESSION['message'])):?>
                 <h2 class="<?=$_SESSION['message']['status']?>"> <?=$_SESSION['message']['text']?>  </h2>
-            <?endif; unset($_SESSION['message']); ?>
+            <?php endif; unset($_SESSION['message']); ?>
             <h2><?php if(isset($view)){include $_SERVER['DOCUMENT_ROOT'].'/include/error.php';} ?> </h2>
         </td>
             <?php getConnection();

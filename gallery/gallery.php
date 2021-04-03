@@ -22,7 +22,7 @@ if(isset($_POST['delete_file'])){
 <body>
 <h2>Галерея</h2>
 <div class="infoMsgFile">
-    <a href="index.php">Венрнуться обратно</a>
+    <a href="/index.php">Венрнуться обратно</a>
 </div>
 
 <form method="post">

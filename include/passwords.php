@@ -81,9 +81,9 @@ if ($_POST['formCheck']){
                                 </div>
                             </td>
                         </tr>
-                    <?endwhile;?>
-                <?endif;?>
-            <?endif; ?>
+                    <?php endwhile;?>
+                <?php endif;?>
+            <?php endif; ?>
         </tbody>
     </table>
         <button name="mod" value="on" type="submit" class="btn btn-primary">Сохранить</button>

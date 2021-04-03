@@ -125,8 +125,7 @@ if (!empty($_SESSION['user']['login'])){
 
 $OnLine = mysqli_query(getConnection(), "UPDATE users SET last_activity = UNIX_TIMESTAMP()  WHERE login = '".$_SESSION['user']['login']."'"); // Закоментироать что бы проверить работу функции онлайн или нет
 
-$userOnLine = mysqli_fetch_assoc(mysqli_query(getConnection(), "SELECT * FROM users 
-                                                            WHERE login = '".$_SESSION['user']['login']."'"));
+$userOnLine = mysqli_fetch_assoc(mysqli_query(getConnection(), "SELECT * FROM users  WHERE login = '".$_SESSION['user']['login']."'"));
 
 if ($userOnLine['last_activity'] < (time()-600)){ // 10 минут
     $_SESSION['online'] = 'Нет';

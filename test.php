@@ -153,7 +153,7 @@ $data = [
 </head>
 <body>
 <a href=""></a>
-<?
+<?php
 foreach ($lit as $key => $value) {
     echo $value['name'] . " - " . $value['mail'] . ", Дата рождения - " . $value['born'] . "<br>";
 
@@ -168,14 +168,14 @@ foreach ($lit as $key => $value) {
 ?>
 
 <ul>
-    <? foreach ($menus as $item ):?>
+    <?php foreach ($menus as $item ):?>
         <li><a href='<?=$item['url']?>'><?=$item['label']?></a></li><ul>
-            <?$count = count($item['item']) ?>
-            <?for ($i=0; $i < $count; $i++): ?>
+            <?php $count = count($item['item']) ?>
+            <?php for ($i=0; $i < $count; $i++): ?>
                 <li><a href='<?=$item['item'][$i]['url']?>'><?=$item['item'][$i]['label']?></a></li>
-            <?endfor;?>
+            <?php endfor;?>
         </ul>
-    <?endforeach;?>
+    <?php endforeach;?>
 </ul>
 
 <?php
@@ -191,10 +191,7 @@ function print_list($list) {
     echo "</ul>";
 }
 ?>
-<?
-
-
-
+<?php
 
 // qsoft
 function countBasket($array = []): int {

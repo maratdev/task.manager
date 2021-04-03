@@ -8,7 +8,7 @@
          <p>Вы можете отправлять сообщения:  <b> <?=(($_SESSION['user']['status'] == 2 or $_SESSION['user']['status'] == 10) ? 'Да' : '<a href="../posts/add.php?to=1">Нет</a>');?> </b></p>
          <p>Рассылка email:  <b> <?=($_SESSION['user']['flag_email'] == '1'  ? 'Да' : 'Нет');?> </b></p>
          <?=(($_SESSION['user']['status'] == 2 or $_SESSION['user']['status'] == 10)  ? "<a href = '/posts/success.php'>Входящие сообщения</a>" : "");?>
-    <?endif;?>
+    <?php endif;?>
 
     <?php // Реализация доступа для администратора 10 - админ 1 -user 2 - send message
     if (!empty($_SESSION['user']['status']) && $_SESSION['user']['status'] == 10): ?>
@@ -40,8 +40,8 @@
             </div>
             <br>
             <hr>
-            <?endwhile;?>
-    <?endif;?>
+            <?php endwhile;?>
+    <?php endif;?>
 
    <?php if ($_SESSION['user']['status'] == 2 or $_SESSION['user']['status'] == 10):  // Пользователь имеющий право писать сообщения (2) ?>
     <!--  // Вывод всех зарегистрированых пользователей и отправка сообщений -->
@@ -58,19 +58,19 @@
                         <a href='/posts/add.php?to=<?=$result['id']?>'>Написать сообщение</a>
                     </div>
                     <br>
-                <?endwhile;?>
-                <?endif;?>
-            <?endif;?>
-        <?endif;?>
+                <?php endwhile;?>
+                <?php endif;?>
+            <?php endif;?>
+        <?php endif;?>
 
 <?php if (!empty($_COOKIE['logins']) && !empty($_SESSION['user']['password'])): ?>
     <br><br>Ваши куки: <?=$_COOKIE['logins']?> и <?=$_SESSION['user']['password']?>
 
-<?endif;?>
+<?php endif;?>
 
 <?php if (!empty($_SESSION['user']['login'])):?>
   <br><br><a href = "?action=exit">Выход</a>
-<?endif;?>
+<?php endif;?>
 
 
 

@@ -21,12 +21,14 @@ include 'bd.php';
 
     }
 
+
     //вывод title
-//Функция вывода названия страницы на которой находися пользователь
+    //Функция вывода названия страницы на которой находися пользователь
 function isCurrentUrl($path, $menu){
         $parse =parse_url($path, PHP_URL_PATH);
         $pos = rtrim($parse, '/\\');
-        foreach ($menu as $title=>$url) {
+
+        foreach ($menu as $title => $url) {
             if (rtrim($url['path'], '/\\') == $pos){
                return $url['title'];
             }elseif(($_SERVER["REQUEST_URI"] == '/' or $_SERVER["REQUEST_URI"] == '/?login=yes')){
@@ -72,37 +74,47 @@ function isCurrentUrl($path, $menu){
         return $results;
     }
 
+// Экранирует параметры, которые передаются в запрос
+    function mysqli_real_escape($string){
+        $results = mysqli_real_escape_string(getConnection(), $string);
+        return $results;
+
+    }
+
 //  Поиск пользователю по id
     function getUserOnId($id){
-        $result_set = mysqli_query(getConnection(),"SELECT * FROM users WHERE id='$id'");
+        $result_set = mysqli_query(getConnection(),"SELECT * FROM users WHERE id= {mysqli_real_escape($id)}");
         return mysqli_fetch_assoc($result_set);
     }
 
 
 //  Добавление сообщения в БД
     function addMessage($from, $to, $header, $text, $category, $read){
-        mysqli_query(getConnection(),"INSERT INTO messages (froms, tos, header, text, `date`, `section`, `read`) 
-                                        VALUES ('$from', '$to', '$header', '$text', UNIX_TIMESTAMP(), '$category', '$read')");
+
+        mysqli_query(getConnection(),"INSERT INTO messages (`from`, `to`, header, text, `date`, `category_id`, `read`) 
+                                        VALUES ({mysqli_real_escape($from)} , {mysqli_real_escape($to)}, '$header', '$text', UNIX_TIMESTAMP(), {mysqli_real_escape($category)}, {mysqli_real_escape($read)})");
+
+
     }
 
 
 //  Вывод всех сообщений
     function getAllMessages($to){
-        $result_set = mysqli_query(getConnection(),"SELECT * FROM messages WHERE tos = '$to' ORDER BY `date` DESC ");
+        $result_set = mysqli_query(getConnection(),"SELECT * FROM messages WHERE `to` = {mysqli_real_escape($to)} ORDER BY `date` DESC ");
         return resultToArray($result_set);
     }
 
 
 //  Вывод категории сообщения
 function getSectionOnId($id){
-    $result_set = mysqli_query(getConnection(),"SELECT * FROM categories WHERE id='$id'");
+    $result_set = mysqli_query(getConnection(),"SELECT * FROM categories WHERE id={mysqli_real_escape($id)}");
     return mysqli_fetch_assoc($result_set);
 }
 
 
 //  Поиск пользователю по login
 function getIdOnUsers($login){
-    $result_set = mysqli_query(getConnection(),"SELECT * FROM users WHERE id='$login'");
+    $result_set = mysqli_query(getConnection(),"SELECT * FROM users WHERE id={mysqli_real_escape($login)}");
     return mysqli_fetch_assoc($result_set);
 }
 
@@ -162,6 +174,7 @@ function view_cat($arr, $parent_id = 0){
 
 // Дерево в строуку HTML
     function categoriesToString($data){
+        $string = '';
         foreach ($data as $item){
             $string .= categoriesToTemplate($item);
         }
@@ -221,8 +234,8 @@ function view_cat($arr, $parent_id = 0){
         if (is_int($ids) && !empty($to)){
             $query = "SELECT * FROM messages
                         LEFT JOIN categories 
-                        ON categories.id = $ids
-                        WHERE messages.tos = $to
+                        ON categories.id =  {mysqli_real_escape($ids)}
+                        WHERE messages.to = {mysqli_real_escape($to)}
                         ORDER BY `date` DESC ";
 
             $res = mysqli_query(getConnection(), $query) or trigger_error(mysqli_error(getConnection())." in ". $query);
@@ -237,7 +250,7 @@ function view_cat($arr, $parent_id = 0){
     }
 function resModeration($from){
 
-        $resModeration = mysqli_query(getConnection(),"SELECT * FROM messages WHERE froms= '$from' AND `read` = '1'");
+        $resModeration = mysqli_query(getConnection(),"SELECT * FROM messages WHERE `from`= {mysqli_real_escape($from)} AND `read` = '1'");
         if (mysqli_num_rows($resModeration) > 0){
             return false;
         }else{

@@ -18,7 +18,7 @@ if ($_GET['read']) {
     $cat = $_GET['category'];
     $id = $_GET['read'];
 
-    mysqli_query(getConnection(), "UPDATE messages SET `read` = '0' WHERE id = '$id'");
+    mysqli_query(getConnection(), "UPDATE messages SET `read` = '0' WHERE id = '$id'"); // 0 прочитано
     header("Location: ?category=".$cat);
 }
 ?>
@@ -51,15 +51,15 @@ if ($_GET['read']) {
                 <div class='side-bar' style='width: 450px; padding: 10px; border: 1px solid cadetblue'>
                     <?php if(!empty($my_messages)):?>
                         <?php foreach($my_messages as $message):?>
-                            <?php if($id  == $message['section']): ?>
-                                    <?php $sections = getSectionOnId($message['section']); ?>
-                                    <?php $users = getIdOnUsers($message['froms']); ?>
+                            <?php if($id  == $message['category_id']): ?>
+                                    <?php $sections = getSectionOnId($message['category_id']); ?>
+                                    <?php $users = getIdOnUsers($message['from']); ?>
                                 <br><br>
                                     <div class='full_name'>От кого: <?=$users['email']?></div>
-                                    <div class='header'>Заголовок: <a href="?category=<?=$sections['id']?>&read=<?=$message[0]?>"> <?=$message['header']?></a></div>
+                                    <div class='header'>Заголовок: <a class="<?=$message['read'] == 0 ? 'inactiveLink' : '' ?>"  href="?category=<?=$sections['id']?>&read=<?=$message[0]?>"> <?=$message['header']?></a></div>
                                     <div class='status_msg'>Статус: <?=$message['read'] == 1 ? '<b style="color: #e37400">Не прочитано</b>' : '<span style="color:#009900 ">Прочитано</span>' ?></div>
 
-                                <?php if($message['read'] == 0 ): ?>
+                                <?php if($message['read'] == 0): ?>
                                     <div class='message'><b>Сообщение:</b> <i><?=$message['text']?></i></div>
                                     <div class='date'><pre>Дата отправки: <?=date('Y-m-d H:i:s', $message['date']);?></pre></div>
                                     <div class='section'><pre>Раздел: <?=$sections['title']?></pre></div>
@@ -69,7 +69,7 @@ if ($_GET['read']) {
                             <?php endif; ?>
                         <?php endforeach; ?>
                    <?php endif;  ?>
-                    <?echo (isset($mess) ? 'Нет сообщений!' : '');?>
+                    <?= (isset($mess) ? 'Нет сообщений!' : '');?>
                 </div>
             </div>
             <a  href="/">Назад</a>

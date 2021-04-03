@@ -24,7 +24,7 @@ if ($_GET['category']){
     $froms = getUserOnId($_SESSION['user']['id']);
     $tos = getAllMessages($froms['id']);
     foreach ($tos as $item){
-       $to = $item['tos'];
+       $to = $item['to'];
     }
     $my_messages = get_messages($ids ,$to);
 }
