@@ -20,22 +20,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0937aed0-78c9-4eea-b652-1cd7e3fe0329" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/posts/view.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/1.php" beforeDir="false" afterPath="$PROJECT_DIR$/1.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gallery/gallery.php" beforeDir="false" afterPath="$PROJECT_DIR$/gallery/gallery.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gallery/upload.php" beforeDir="false" afterPath="$PROJECT_DIR$/gallery/upload.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/include/catalog.php" beforeDir="false" afterPath="$PROJECT_DIR$/include/catalog.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/category_template.php" beforeDir="false" afterPath="$PROJECT_DIR$/include/category_template.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/include/function.php" beforeDir="false" afterPath="$PROJECT_DIR$/include/function.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/include/login_form.php" beforeDir="false" afterPath="$PROJECT_DIR$/include/login_form.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/passwords.php" beforeDir="false" afterPath="$PROJECT_DIR$/include/passwords.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/main_menu.php" beforeDir="false" afterPath="$PROJECT_DIR$/include/main_menu.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/posts/add.php" beforeDir="false" afterPath="$PROJECT_DIR$/posts/add.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/posts/success.php" beforeDir="false" afterPath="$PROJECT_DIR$/posts/success.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/posts/view.php" beforeDir="false" afterPath="$PROJECT_DIR$/posts/view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/route/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/route/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task.manager.rar" beforeDir="false" afterPath="$PROJECT_DIR$/task.manager.rar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/templates/auth.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/templates/footer.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/form.php" beforeDir="false" afterPath="$PROJECT_DIR$/templates/form.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.php" beforeDir="false" afterPath="$PROJECT_DIR$/test.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/templates/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/menu.php" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -203,7 +205,10 @@
       <workItem from="1616929816362" duration="9824000" />
       <workItem from="1617122508101" duration="3485000" />
       <workItem from="1617182291669" duration="8811000" />
-      <workItem from="1617454574059" duration="11336000" />
+      <workItem from="1617454574059" duration="12177000" />
+      <workItem from="1617538160937" duration="16294000" />
+      <workItem from="1617987317883" duration="3806000" />
+      <workItem from="1618050917272" duration="23161000" />
     </task>
     <servers />
   </component>
@@ -235,17 +240,17 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="606" y="194" width="716" height="525" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1610139970289" />
-    <state x="184" y="108" width="778" height="843" key="find.popup" timestamp="1617466519116">
+    <state x="347" y="134" width="1135" height="843" key="find.popup" timestamp="1618069933034">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="184" y="108" width="778" height="843" key="find.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1617466519116" />
+    <state x="347" y="134" width="1135" height="843" key="find.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1618069933034" />
     <state x="601" y="251" width="700" height="530" key="recent.locations.popup" timestamp="1617459046149">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="601" y="251" width="700" height="530" key="recent.locations.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1617459046149" />
-    <state x="143" y="233" key="search.everywhere.popup" timestamp="1611244209351">
+    <state x="143" y="233" width="672" height="678" key="search.everywhere.popup" timestamp="1618061153508">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="143" y="233" key="search.everywhere.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1611244209351" />
+    <state x="143" y="233" width="672" height="678" key="search.everywhere.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1618061153508" />
   </component>
 </project>

@@ -3,9 +3,10 @@ $categories = get_categories();
 $categories_tree = map_tree($categories);
 $categories_menu = categoriesToString($categories_tree);
 
-if ($_GET['category']){
+if (isset($_GET['category'])){
     $id = (int)$_GET['category'];
     // хлебные крошки
+    $breadcrumbs = '';
    $breadcrumbs_array = breadcrumbs($categories, $id);
    if ($breadcrumbs_array){
        foreach ($breadcrumbs_array as $id => $title){
@@ -16,6 +17,7 @@ if ($_GET['category']){
 
    }else{
        $breadcrumbs = "Каталог";
+       $id = (int)$_GET['category'];
    }
 
     // ID дочерных категорий

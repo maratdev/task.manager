@@ -14,7 +14,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/include/function.php';
 include $_SERVER['DOCUMENT_ROOT'].'/include/catalog.php';
 
 
-if ($_GET['read']) {
+if (isset($_GET['read'])) {
     $cat = $_GET['category'];
     $id = $_GET['read'];
 
@@ -34,7 +34,7 @@ if ($_GET['read']) {
 </head>
 <body>
 
-<?php include '../templates/header.php' ?>
+<?php include $_SERVER['DOCUMENT_ROOT'].'/templates/header.php' ?>
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
@@ -46,19 +46,18 @@ if ($_GET['read']) {
                     <?= $categories_menu;?>
                 </ul>
                 <hr>
-                    <p> <?= $breadcrumbs;?></p>
+                    <p><?=(isset($breadcrumbs) ? $breadcrumbs : '')?></p>
                 <br>
                 <div class='side-bar' style='width: 450px; padding: 10px; border: 1px solid cadetblue'>
                     <?php if(!empty($my_messages)):?>
                         <?php foreach($my_messages as $message):?>
-                            <?php if($id  == $message['category_id']): ?>
+                            <?php if($id == $message['category_id']): ?>
                                     <?php $sections = getSectionOnId($message['category_id']); ?>
                                     <?php $users = getIdOnUsers($message['from']); ?>
                                 <br><br>
                                     <div class='full_name'>От кого: <?=$users['email']?></div>
-                                    <div class='header'>Заголовок: <a class="<?=$message['read'] == 0 ? 'inactiveLink' : '' ?>"  href="?category=<?=$sections['id']?>&read=<?=$message[0]?>"> <?=$message['header']?></a></div>
+                                    <div class='header'>Заголовок: <a class="<?=$message['read'] == 0 ? 'inactiveLink' : '' ?>"  href="?category=<?=$sections['id']?>&read=<?=$message['id']?>"> <?=$message['header']?></a></div>
                                     <div class='status_msg'>Статус: <?=$message['read'] == 1 ? '<b style="color: #e37400">Не прочитано</b>' : '<span style="color:#009900 ">Прочитано</span>' ?></div>
-
                                 <?php if($message['read'] == 0): ?>
                                     <div class='message'><b>Сообщение:</b> <i><?=$message['text']?></i></div>
                                     <div class='date'><pre>Дата отправки: <?=date('Y-m-d H:i:s', $message['date']);?></pre></div>
@@ -66,9 +65,19 @@ if ($_GET['read']) {
                                     <a href="add.php?to=<?=$users["id"]?>">Ответить</a>
                                     <?= $_SESSION['user']['status'] == 10  ? '<a style="margin-left: 5px" href="../include/passwords.php">Модерация</a><br>' : ''?>
                                 <?php endif; ?>
-                            <?php endif; ?>
+                                <?php endif; ?>
+
                         <?php endforeach; ?>
-                   <?php endif;  ?>
+                    <?elseif(empty($_GET)) :?>
+                    <p>Не прочитанные: <?= count(getAllMessages2(1, $_SESSION['user']['id']))?> </p>
+                    <? foreach (getAllMessages2(1, $_SESSION['user']['id']) as $arr): ?>
+                            <?php $sections = getSectionOnId($arr['category_id']); ?>
+                            <?php $users = getIdOnUsers($arr['from']); ?>
+                            <div class='full_name'>От кого: <?=$users['email']?></div>
+                            <div class='header'>Заголовок:  <a class="<?=$arr['read'] == 0 ? 'inactiveLink' : '' ?>"  href="?category=<?=$sections['id']?>&read=<?=$arr['id']?>"> <?=$arr['header']?></a></div>
+                            <div class='status_msg'>Статус: <?=$arr['read'] == 1 ? '<b style="color: #e37400">Не прочитано</b>' : '<span style="color:#009900 ">Прочитано</span>' ?></div>
+                        <?php endforeach; ?>
+                    <?php endif;?>
                     <?= (isset($mess) ? 'Нет сообщений!' : '');?>
                 </div>
             </div>
@@ -77,7 +86,7 @@ if ($_GET['read']) {
     </tr>
 </table>
 
-<?php include '../templates/footer.php' ?>
+<?php include $_SERVER['DOCUMENT_ROOT'].'/templates/footer.php' ?>
 <script>
     $(document).ready(function () {
     $(".category").dcAccordion()

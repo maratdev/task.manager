@@ -32,7 +32,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/include/login_form.php';
             <h2><?php if(isset($true_form_set)){ include $_SERVER['DOCUMENT_ROOT'].'/posts/success.php';}
             if(isset($view)){include $_SERVER['DOCUMENT_ROOT'].'/include/error.php';} ?> </h2>
         </td>
-            <?php if($_GET['login'] == 'yes'){ include $_SERVER['DOCUMENT_ROOT'].'/templates/form.php';} ?>
+            <?php if(isset($_GET['login']) && $_GET['login'] == 'yes'){ include $_SERVER['DOCUMENT_ROOT'].'/templates/form.php';} ?>
     </tr>
 </table>
             <?php include $_SERVER['DOCUMENT_ROOT'].'/templates/footer.php' ?>

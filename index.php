@@ -7,7 +7,7 @@ session_start();
 
 include $_SERVER['DOCUMENT_ROOT'].'/include/function.php';
 include $_SERVER['DOCUMENT_ROOT'].'/include/login_form.php';
-//error_reporting(E_ALL);
+error_reporting(E_ALL);
 ?>
 <!DOCTYPE html>
 <html>
@@ -31,7 +31,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/include/login_form.php';
             <h2><?php if(isset($view)){include $_SERVER['DOCUMENT_ROOT'].'/include/error.php';} ?> </h2>
         </td>
             <?php getConnection();
-            if($_GET['login'] == 'yes' && isset($get_login)){ include $_SERVER['DOCUMENT_ROOT'].'/templates/form.php';} ?>
+            if((isset($_GET['login']) &&  $_GET['login']== 'yes')  && isset($get_login)){ include $_SERVER['DOCUMENT_ROOT'].'/templates/form.php';} ?>
 
     </tr>
 </table>

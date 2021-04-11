@@ -6,7 +6,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/include/login_form.php';
 include $_SERVER['DOCUMENT_ROOT'].'/include/catalog.php';
 
 $from_user = getUserOnId($_SESSION['user']['id']);
-$result_set = mysqli_query(getConnection(),"SELECT * FROM messages WHERE tos = '{$from_user['id']}' AND `read` = '1' ORDER BY id LIMIT 1 ");
+$result_set = mysqli_query(getConnection(),"SELECT * FROM messages WHERE `to` = '{$from_user['id']}' AND `read` = '1' ORDER BY id LIMIT 1 ");
 
 $arr = [];
 while ($row = mysqli_fetch_assoc($result_set)){
@@ -23,12 +23,14 @@ while ($row = mysqli_fetch_assoc($result_set)){
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="../styles.css" rel="stylesheet" />
+    <link href="/styles.css" rel="stylesheet" />
     <title>Все сообщения!</title>
 </head>
 <body>
 
-<?php include '../templates/header.php' ?>
+<?php include $_SERVER['DOCUMENT_ROOT'].'/templates/header.php';
+?>
+
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
@@ -45,7 +47,7 @@ while ($row = mysqli_fetch_assoc($result_set)){
     </tr>
 </table>
 
-<?php include '../templates/footer.php' ?>
+<?php include $_SERVER['DOCUMENT_ROOT'].'/templates/footer.php' ?>
 <script>
     $(document).ready(function () {
     $(".category").dcAccordion()

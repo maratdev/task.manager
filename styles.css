@@ -119,30 +119,14 @@ ul.category ul{
 
 
 
-.header .menu_header li{
-	float: left;
-	text-decoration:none;
-	list-style: none;
-	padding-top: 5px;
-	padding-bottom: 5px;
-
-}
-
-.header .menu_header a{
-	font-size: 16px;
-	text-decoration: none;
-	padding-top: 10px;
-	padding-right: 8px;
-	color: #fff;
-}
 .header .menu_header a:hover{
 
 	text-decoration: none;
 	color: #00a0de;
 }
 
-.header .menu_header a.active{
-	text-decoration:underline
+.menu_header a.active{
+	text-decoration:underline;
 }
 
 
@@ -165,37 +149,55 @@ ul.category ul{
 .menu {
 	border: none;
 }
-.top-menu {
-	margin: 0px;
-	padding: 0px;
-}
-.top-menu li {
-	list-style: none;
-	float: left;
-	background: url(i/top-menu-bg.gif) bottom repeat-x #efefef;
-	margin: 0px 3px 0px 0px;
-	padding: 0px;
-}
-
-.top-menu li a {
-	padding: 6px 10px;
-	text-decoration: none;
-	display: block;
-	color: #999999;
-}
-.top-menu li a:hover {
-	padding: 6px 10px;
-	text-decoration: none;
-	display: block;
-	color: #fff;
-	background: url(i/fl-bg-hover.gif) bottom repeat-x #67bdff;
-}
 .top-menu-active span {
 	padding: 6px 10px;
 	text-decoration: none;
 	display: block;
 	color: #333;
 	background: #f6f6f6;
+}
+.main-menu {
+	margin: 0;
+	padding: 0;
+	clear: both;
+}
+
+.main-menu li {
+	list-style: none;
+	float: left;
+	background: url(i/top-menu-bg.gif) bottom repeat-x #efefef;
+	margin: 0 3px 0 0;
+	padding: 0;
+}
+
+.main-menu li a {
+	padding: 6px 10px;
+	text-decoration: none;
+	display: block;
+	color: #999999;
+}
+
+.main-menu li a:hover {
+	padding: 6px 10px;
+	text-decoration: none;
+	display: block;
+	color: #ffffff !important;
+	background: url(i/fl-bg-hover.gif) bottom repeat-x #67bdff;
+}
+
+.clearfix::after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.main-menu.bottom {
+	float: left;
+}
+
+.main-menu.bottom li {
+	float: none;
+	display: block;
 }
 
 .left-collum {
