@@ -21,23 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0937aed0-78c9-4eea-b652-1cd7e3fe0329" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/catalog.php" beforeDir="false" afterPath="$PROJECT_DIR$/include/catalog.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/category_template.php" beforeDir="false" afterPath="$PROJECT_DIR$/include/category_template.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/function.php" beforeDir="false" afterPath="$PROJECT_DIR$/include/function.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/login_form.php" beforeDir="false" afterPath="$PROJECT_DIR$/include/login_form.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/main_menu.php" beforeDir="false" afterPath="$PROJECT_DIR$/include/main_menu.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posts/add.php" beforeDir="false" afterPath="$PROJECT_DIR$/posts/add.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posts/success.php" beforeDir="false" afterPath="$PROJECT_DIR$/posts/success.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posts/view.php" beforeDir="false" afterPath="$PROJECT_DIR$/posts/view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/route/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/route/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task.manager.rar" beforeDir="false" afterPath="$PROJECT_DIR$/task.manager.rar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/templates/auth.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/templates/footer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/form.php" beforeDir="false" afterPath="$PROJECT_DIR$/templates/form.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/templates/header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/menu.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/bd.php" beforeDir="false" afterPath="$PROJECT_DIR$/include/bd.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,8 +43,9 @@
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="Markdown" />
     <property name="database.data.extractors.current.id" value="JSON-Groovy.json.groovy" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/include" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.general" />
@@ -209,6 +194,8 @@
       <workItem from="1617538160937" duration="16294000" />
       <workItem from="1617987317883" duration="3806000" />
       <workItem from="1618050917272" duration="23161000" />
+      <workItem from="1618256314581" duration="12000" />
+      <workItem from="1618571036503" duration="1105000" />
     </task>
     <servers />
   </component>
